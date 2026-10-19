@@ -278,9 +278,9 @@ would be misleading here, since code and data have different legal content:
 
 ## Citing this release
 
-See [`CITATION.cff`](CITATION.cff). The `authors` and `date-released` fields
-are placeholders pending the maintainer's decision — do not assume a name
-from this template.
+See [`CITATION.cff`](CITATION.cff). Attributed to `ctegdf` (the maintainer's
+chosen public handle, recorded as a CFF `entity` rather than a parsed personal
+name).
 
 ## More
 

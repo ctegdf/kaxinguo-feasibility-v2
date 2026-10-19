@@ -12,6 +12,17 @@ aliases of each other. Packaging releases (below) can happen without either
 frozen identifier changing, and vice versa: see `CONTRIBUTING.md` for when
 the frozen identifiers themselves must be bumped.
 
+## [1.0.1] - 2026-10-15
+
+### Changed
+- Filled in the attribution placeholders left open in 1.0.0:
+  `CITATION.cff`'s `authors` (recorded as a CFF `entity` — `name: ctegdf` —
+  rather than a parsed `person`, since it's a chosen public handle, not a
+  real name split into given/family names) and `date-released`
+  (`2026-10-15`), and the copyright/attribution line in `LICENSE` and
+  `LICENSE-DATA` (`ctegdf`). `README.md`/`README_zh.md`'s citation section
+  updated to match; no other content changed.
+
 ## [1.0.0] - 2026-10-15
 
 Initial public packaging release.
@@ -58,4 +69,5 @@ Initial public packaging release.
   "home_branch_planning_dataset_v3"` — are unchanged by this packaging
   release.
 
+[1.0.1]: #101---2026-10-15
 [1.0.0]: #100---2026-10-15

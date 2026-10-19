@@ -1,37 +1,29 @@
-# NOTE on this file's placeholders (both deliberate, not oversights):
+# NOTE: the `license: MIT` field below covers the .py tooling only. The
+# dataset, prompts, schemas, and documentation in this repository are
+# licensed separately under CC BY 4.0 — see LICENSE-DATA at the repository
+# root. CFF 1.2.0's schema has no dedicated field for a per-component dual
+# license, and its root object does not accept arbitrary extra keys, so
+# this fact is recorded here as a comment rather than as a fabricated
+# non-standard CFF field.
 #
-# 1. date-released and authors[*].given-names/family-names below are literal
-#    "TODO" strings. "TODO" is not a valid CFF `date` (expects YYYY-MM-DD),
-#    so this file will fail strict CFF schema validation (e.g. cffconvert)
-#    until the maintainer fills in real values. A fabricated date or name
-#    would validate cleanly but be wrong, which is worse than a loudly
-#    placeholder file that doesn't — so the placeholder stays until someone
-#    supplies the real values.
-#
-# 2. The `license: MIT` field below covers the .py tooling only. The
-#    dataset, prompts, schemas, and documentation in this repository are
-#    licensed separately under CC BY 4.0 — see LICENSE-DATA at the
-#    repository root. CFF 1.2.0's schema has no dedicated field for a
-#    per-component dual license, and its root object does not accept
-#    arbitrary extra keys, so this fact is recorded here as a comment
-#    rather than as a fabricated non-standard CFF field.
+# The author is recorded as a CFF `entity` (just a `name`), not a `person`
+# (given-names/family-names) — "ctegdf" is the maintainer's chosen public
+# handle for this release, not a parsed personal name.
 cff-version: 1.2.0
 message: >-
   If you use this dataset, protocol, or tooling, please cite it using the
-  metadata below. Author/affiliation fields are placeholders pending the
-  maintainer's decision. The `license: MIT` below covers only the .py
-  tooling; the dataset/prompts/schemas/docs are separately CC BY 4.0 (see
-  LICENSE-DATA at the repository root) — see the comments at the top of
+  metadata below. The `license: MIT` below covers only the .py tooling;
+  the dataset/prompts/schemas/docs are separately CC BY 4.0 (see
+  LICENSE-DATA at the repository root) — see the comment at the top of
   this file for why that split isn't expressed as a CFF field.
 title: >-
   kaxinguo_feasibility_v1: A Frozen Dataset and Protocol for Comparing
   One-Shot Behavior-Tree vs. Turn-by-Turn LLM Robot Task Planning
 type: software
 version: kaxinguo_feasibility_v1
-date-released: "TODO"
+date-released: "2026-10-15"
 authors:
-  - given-names: "TODO"
-    family-names: "TODO"
+  - name: "ctegdf"
 license: MIT
 keywords:
   - llm-planning
@@ -44,7 +36,6 @@ preferred-citation:
     kaxinguo_feasibility_v1: A Frozen Dataset and Protocol for Comparing
     One-Shot Behavior-Tree vs. Turn-by-Turn LLM Robot Task Planning
   version: kaxinguo_feasibility_v1
-  date-released: "TODO"
+  date-released: "2026-10-15"
   authors:
-    - given-names: "TODO"
-      family-names: "TODO"
+    - name: "ctegdf"

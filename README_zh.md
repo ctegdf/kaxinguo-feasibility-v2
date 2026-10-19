@@ -222,8 +222,8 @@ python3 运行代码与说明/summarize_results.py --runs-dir 运行结果/mock_
 
 ## 引用本次发布
 
-见 [`CITATION.cff`](CITATION.cff)。其中 `authors` 与 `date-released` 字段为占位符，等待维护者
-确定——请不要从模板中臆测出一个名字。
+见 [`CITATION.cff`](CITATION.cff)。归属为 `ctegdf`（维护者选用的公开署名，按 CFF 的 `entity`
+形式记录，而不是拆分成真实姓名的 `person` 形式）。
 
 ## 更多
 
