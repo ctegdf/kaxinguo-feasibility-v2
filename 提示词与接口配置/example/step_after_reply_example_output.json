@@ -1,0 +1,10 @@
+{
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "task_id": "task_010",
+  "context_revision": 5,
+  "decision": "CALL",
+  "skill": "MOVE_TO",
+  "args": {
+    "location_id": "kitchen_left_upper"
+  }
+}

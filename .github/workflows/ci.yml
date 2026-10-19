@@ -1,0 +1,108 @@
+name: release-ci
+
+# This proves the offline regression and the mock pipeline both run end to end; it is not a research result.
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify-and-mock-walkthrough:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Offline protocol/fixture regression (no network, no model)
+        run: python3 运行代码与说明/verify_release.py
+
+      - name: Mock walkthrough (mock_server.py + live_runner.py --mock + summarize_results.py)
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          log="${RUNNER_TEMP}/mock_server.log"
+          python3 运行代码与说明/mock_server.py \
+            --bt-test-id episode_001 --step-test-id episode_016 \
+            >"$log" 2>&1 &
+          server_pid=$!
+
+          cleanup() {
+            if kill -0 "$server_pid" 2>/dev/null; then
+              kill "$server_pid" 2>/dev/null || true
+              wait "$server_pid" 2>/dev/null || true
+            fi
+          }
+          trap cleanup EXIT
+
+          # Poll /healthz rather than sleeping a fixed duration; bail out
+          # immediately (with the server's own log) if it died on startup.
+          for _ in $(seq 1 60); do
+            if curl --fail --silent --max-time 2 http://127.0.0.1:8800/healthz >/dev/null; then
+              break
+            fi
+            if ! kill -0 "$server_pid" 2>/dev/null; then
+              echo "mock_server.py exited before becoming healthy:" >&2
+              cat "$log" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+          curl --fail --silent --max-time 2 http://127.0.0.1:8800/healthz >/dev/null || {
+            echo "mock_server.py never became healthy within 60s:" >&2
+            cat "$log" >&2
+            exit 1
+          }
+
+          # A FRESH directory outside the repo tree, not 运行结果/mock_runs:
+          # that path already contains two committed example trajectories,
+          # and reusing it here would let this check pass vacuously (seeing
+          # only the old committed files) even if these two runner
+          # invocations silently produced nothing.
+          out_dir="${RUNNER_TEMP}/ci_mock_runs"
+          mkdir -p "$out_dir"
+
+          # Two separate invocations, not one --architecture both: the mock
+          # server only recognizes episode_001 (task_001) as its BT demo and
+          # episode_016 (task_005) as its STEP demo, which are different
+          # test/task ids, so each architecture must be paired with its own
+          # matching --test-id.
+          python3 运行代码与说明/live_runner.py --mock --architecture bt --test-id episode_001 \
+            --model mock-ci --endpoint http://127.0.0.1:8800 --out-dir "$out_dir"
+          python3 运行代码与说明/live_runner.py --mock --architecture step --test-id episode_016 \
+            --model mock-ci --endpoint http://127.0.0.1:8800 --out-dir "$out_dir"
+
+          python3 运行代码与说明/summarize_results.py --runs-dir "$out_dir" --include-mock
+
+          # live_runner.py writes a trajectory and exits 0 even when a run
+          # did not finish (e.g. a transport or validation failure), so a
+          # clean exit code alone does not prove the walkthrough worked.
+          # Assert directly on what was written: exactly two trajectories,
+          # in this fresh directory, each FINISHED and mock-confirmed.
+          python3 - "$out_dir" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          out_dir = Path(sys.argv[1])
+          expected = {("episode_001", "task_001", "bt"), ("episode_016", "task_005", "step")}
+          files = sorted(out_dir.glob("*.json"))
+          if len(files) != 2:
+              sys.exit(f"expected exactly 2 trajectory files in {out_dir}, found {len(files)}: {files!r}")
+          seen = set()
+          for path in files:
+              run = json.loads(path.read_text(encoding="utf-8"))
+              if run.get("outcome") != "FINISHED":
+                  sys.exit(f"{path}: expected outcome FINISHED, got {run.get('outcome')!r}")
+              if run.get("is_mock_endpoint") is not True:
+                  sys.exit(f"{path}: expected is_mock_endpoint true")
+              seen.add((run.get("test_id"), run.get("task_id"), run.get("architecture")))
+          if seen != expected:
+              sys.exit(f"unexpected set of trajectories: {sorted(seen)!r}")
+          print(f"OK: {len(seen)} freshly-generated mock trajectories all FINISHED as expected.")
+          PY

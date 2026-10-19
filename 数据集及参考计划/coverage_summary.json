@@ -1,0 +1,135 @@
+{
+  "dataset_id": "home_branch_planning_dataset_v3",
+  "unique_goals": 10,
+  "scenarios": 48,
+  "goals": [
+    {
+      "task_id": "task_001",
+      "category_id": "C01",
+      "category": "单条件决定动作",
+      "scenario_count": 2,
+      "test_ids": [
+        "episode_001",
+        "episode_002"
+      ]
+    },
+    {
+      "task_id": "task_002",
+      "category_id": "C02",
+      "category": "多地点搜索与提前结束",
+      "scenario_count": 4,
+      "test_ids": [
+        "episode_003",
+        "episode_004",
+        "episode_005",
+        "episode_006"
+      ]
+    },
+    {
+      "task_id": "task_003",
+      "category_id": "C03",
+      "category": "嵌套条件判断",
+      "scenario_count": 5,
+      "test_ids": [
+        "episode_007",
+        "episode_008",
+        "episode_009",
+        "episode_037",
+        "episode_038"
+      ]
+    },
+    {
+      "task_id": "task_004",
+      "category_id": "C04",
+      "category": "多条件共同决定行动",
+      "scenario_count": 4,
+      "test_ids": [
+        "episode_010",
+        "episode_011",
+        "episode_012",
+        "episode_013"
+      ]
+    },
+    {
+      "task_id": "task_005",
+      "category_id": "C05",
+      "category": "数量决定交互方式",
+      "scenario_count": 4,
+      "test_ids": [
+        "episode_014",
+        "episode_015",
+        "episode_016",
+        "episode_017"
+      ]
+    },
+    {
+      "task_id": "task_006",
+      "category_id": "C06",
+      "category": "跨地点结果组合",
+      "scenario_count": 5,
+      "test_ids": [
+        "episode_018",
+        "episode_019",
+        "episode_020",
+        "episode_021",
+        "episode_022"
+      ]
+    },
+    {
+      "task_id": "task_007",
+      "category_id": "C07",
+      "category": "观察内容决定后续任务",
+      "scenario_count": 3,
+      "test_ids": [
+        "episode_023",
+        "episode_024",
+        "episode_025"
+      ]
+    },
+    {
+      "task_id": "task_008",
+      "category_id": "C08",
+      "category": "数量比较决定后续地点",
+      "scenario_count": 11,
+      "test_ids": [
+        "episode_026",
+        "episode_027",
+        "episode_028",
+        "episode_029",
+        "episode_030",
+        "episode_039",
+        "episode_040",
+        "episode_041",
+        "episode_042",
+        "episode_043",
+        "episode_044"
+      ]
+    },
+    {
+      "task_id": "task_009",
+      "category_id": "C09",
+      "category": "例外条件与规则优先级",
+      "scenario_count": 4,
+      "test_ids": [
+        "episode_031",
+        "episode_032",
+        "episode_033",
+        "episode_034"
+      ]
+    },
+    {
+      "task_id": "task_010",
+      "category_id": "C10",
+      "category": "用户回答决定是否继续",
+      "scenario_count": 6,
+      "test_ids": [
+        "episode_035",
+        "episode_036",
+        "episode_045",
+        "episode_046",
+        "episode_047",
+        "episode_048"
+      ]
+    }
+  ]
+}

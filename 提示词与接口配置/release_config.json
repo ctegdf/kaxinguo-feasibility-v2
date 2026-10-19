@@ -1,0 +1,34 @@
+{
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "status": "FROZEN_FOR_FIRST_FEASIBILITY_RUN",
+  "dataset_id": "home_branch_planning_dataset_v3",
+  "model_name": null,
+  "endpoint": null,
+  "backend_version": null,
+  "temperature": 0,
+  "stream": false,
+  "initial_max_tokens": {
+    "bt": 8192,
+    "step": 512
+  },
+  "max_decisions_per_episode": 40,
+  "bt_max_nodes": 256,
+  "replan_enabled": false,
+  "ask_channel": "INTERACTION_WINDOW",
+  "one_observation_information_item": true,
+  "observation_unknown_cases_included": false,
+  "execution_failure_cases_included": false,
+  "prompt_files": {
+    "bt": "提示词与接口配置/prompts/bt_system.txt",
+    "step": "提示词与接口配置/prompts/step_system.txt"
+  },
+  "input_schemas": {
+    "bt": "提示词与接口配置/schemas/bt_input.schema.json",
+    "step": "提示词与接口配置/schemas/step_input.schema.json"
+  },
+  "output_schemas": {
+    "bt": "提示词与接口配置/schemas/bt_output.schema.json",
+    "step": "提示词与接口配置/schemas/step_output.schema.json"
+  },
+  "backend_request_documentation": "https://docs.vllm.ai/en/latest/features/structured_outputs/"
+}

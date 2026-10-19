@@ -1,0 +1,3 @@
+﻿architecture,model_name,endpoint,transport,is_mock_endpoint,settings_id,goals_all_scenarios_pass,total_goals,macro_pass_rate
+bt,mock-model,http://127.0.0.1:8801/v1/chat/completions,http,true,50a4f83fdce1cdfd568adc01a33053c7a49e57f3de6f0385e21b3e7467f6379d,0,10,0.0
+step,mock-model,http://127.0.0.1:8801/v1/chat/completions,http,true,50a4f83fdce1cdfd568adc01a33053c7a49e57f3de6f0385e21b3e7467f6379d,0,10,0.0

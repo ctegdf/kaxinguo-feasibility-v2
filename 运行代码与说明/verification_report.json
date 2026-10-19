@@ -1,0 +1,384 @@
+{
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "scope": "FROZEN_PROTOCOL_AND_HAND_AUTHORED_FIXTURE_REGRESSION",
+  "unique_goals": 10,
+  "scenarios": 48,
+  "json_schema_validator": "jsonschema 4.26.0",
+  "reference_data_cases_passed": 48,
+  "step_adapter_replay_cases_passed": 48,
+  "hand_authored_bt_count": 10,
+  "hand_authored_bt_replay_cases_passed": 48,
+  "single_information_observations": 85,
+  "simple_replies": 14,
+  "reference_calls_by_type": {
+    "MOVE_TO": 98,
+    "OBSERVE": 85,
+    "SAY": 49,
+    "FINISH": 48,
+    "FOLLOW": 3,
+    "ASK": 14
+  },
+  "request_pairs_checked": 96,
+  "negative_protocol_checks_passed": 16,
+  "negative_protocol_checks": [
+    "one_information_item",
+    "model_question_cannot_override_fixed_query",
+    "view_field_pair",
+    "observation_requires_arrival",
+    "future_reference",
+    "boolean_not_integer",
+    "count_cannot_be_speech",
+    "tree_dependency_analysis",
+    "isolated_node",
+    "end_cannot_skip_ancestor_work",
+    "cyclic_tree",
+    "overlapping_true_branches",
+    "stale_context_revision",
+    "no_decision_during_pending_action",
+    "ambiguous_location_reply",
+    "unknown_does_not_become_zero"
+  ],
+  "model_called": false,
+  "model_planning_accuracy": null,
+  "vllm_backend_schema_acceptance_tested": false,
+  "real_robot_or_vision_tested": false,
+  "general_free_text_semantic_scorer_implemented": false,
+  "case_results": [
+    {
+      "test_id": "episode_001",
+      "task_id": "task_001",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_002",
+      "task_id": "task_001",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_003",
+      "task_id": "task_002",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_004",
+      "task_id": "task_002",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_005",
+      "task_id": "task_002",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_006",
+      "task_id": "task_002",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_007",
+      "task_id": "task_003",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_008",
+      "task_id": "task_003",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_009",
+      "task_id": "task_003",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_010",
+      "task_id": "task_004",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_011",
+      "task_id": "task_004",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_012",
+      "task_id": "task_004",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_013",
+      "task_id": "task_004",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_014",
+      "task_id": "task_005",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_015",
+      "task_id": "task_005",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_016",
+      "task_id": "task_005",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_017",
+      "task_id": "task_005",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_018",
+      "task_id": "task_006",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_019",
+      "task_id": "task_006",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_020",
+      "task_id": "task_006",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_021",
+      "task_id": "task_006",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_022",
+      "task_id": "task_006",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_023",
+      "task_id": "task_007",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_024",
+      "task_id": "task_007",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_025",
+      "task_id": "task_007",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_026",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_027",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_028",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_029",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_030",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_031",
+      "task_id": "task_009",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_032",
+      "task_id": "task_009",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_033",
+      "task_id": "task_009",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_034",
+      "task_id": "task_009",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_035",
+      "task_id": "task_010",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_036",
+      "task_id": "task_010",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_037",
+      "task_id": "task_003",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_038",
+      "task_id": "task_003",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_039",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_040",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_041",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_042",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_043",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_044",
+      "task_id": "task_008",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_045",
+      "task_id": "task_010",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_046",
+      "task_id": "task_010",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_047",
+      "task_id": "task_010",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    },
+    {
+      "test_id": "episode_048",
+      "task_id": "task_010",
+      "reference_data": "PASS",
+      "step_adapter_replay": "PASS",
+      "hand_authored_bt_replay": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,2122 @@
+{
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "model_called": false,
+  "model_name": null,
+  "backend_version": null,
+  "quantization": null,
+  "chat_template": null,
+  "cases": [
+    {
+      "test_id": "episode_001",
+      "task_id": "task_001",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_002",
+      "task_id": "task_001",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_003",
+      "task_id": "task_002",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_004",
+      "task_id": "task_002",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_005",
+      "task_id": "task_002",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_006",
+      "task_id": "task_002",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_007",
+      "task_id": "task_003",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_008",
+      "task_id": "task_003",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_009",
+      "task_id": "task_003",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_010",
+      "task_id": "task_004",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_011",
+      "task_id": "task_004",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_012",
+      "task_id": "task_004",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_013",
+      "task_id": "task_004",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_014",
+      "task_id": "task_005",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_015",
+      "task_id": "task_005",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_016",
+      "task_id": "task_005",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_017",
+      "task_id": "task_005",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_018",
+      "task_id": "task_006",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_019",
+      "task_id": "task_006",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_020",
+      "task_id": "task_006",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_021",
+      "task_id": "task_006",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_022",
+      "task_id": "task_006",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_023",
+      "task_id": "task_007",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_024",
+      "task_id": "task_007",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_025",
+      "task_id": "task_007",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_026",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_027",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_028",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_029",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_030",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_031",
+      "task_id": "task_009",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_032",
+      "task_id": "task_009",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_033",
+      "task_id": "task_009",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_034",
+      "task_id": "task_009",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_035",
+      "task_id": "task_010",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_036",
+      "task_id": "task_010",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_037",
+      "task_id": "task_003",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_038",
+      "task_id": "task_003",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_039",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_040",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_041",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_042",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_043",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_044",
+      "task_id": "task_008",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_045",
+      "task_id": "task_010",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_046",
+      "task_id": "task_010",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_047",
+      "task_id": "task_010",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    },
+    {
+      "test_id": "episode_048",
+      "task_id": "task_010",
+      "bt": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      },
+      "step": {
+        "run_status": "NOT_RUN",
+        "checks": {
+          "structure_and_arguments": null,
+          "required_observation_evidence": null,
+          "correct_branch": null,
+          "all_required_actions": null,
+          "constraints_respected": null,
+          "completion_at_correct_time": null
+        },
+        "success": null,
+        "error_type": null,
+        "notes": "",
+        "model_calls": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "physical_skill_calls": null,
+        "ask_count": null
+      }
+    }
+  ]
+}

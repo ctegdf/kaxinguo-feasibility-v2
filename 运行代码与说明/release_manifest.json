@@ -1,0 +1,274 @@
+{
+  "kind": "repo_packaging_manifest",
+  "note": "Covers the entire packaged repository tree as of this packaging release (sha256 per file). Distinct from the original internal kaxinguo_feasibility_v1 release manifest at 运行代码与说明/原始release_manifest_frozen.json (33 files) — see frozen_core_manifest_sha256 below, which hashes that original manifest file itself for traceability; its own entry also appears in `files` like any other file.",
+  "frozen_core_manifest_path": "运行代码与说明/原始release_manifest_frozen.json",
+  "frozen_core_manifest_sha256": "78f2a625a8ad8fe762c7de451e1dc0307388389f5a64eace56b0a4b5450de978",
+  "file_count": 53,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "23746779dda35b9f9e4a0f085aabdb1f2ebbb44e4f7b46b0db43be5718489403",
+      "bytes": 4700
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "eae25077caf8d9460ac64fd4141d4fc7cc66d4c795880a3c35da520b1fa4199f",
+      "bytes": 49
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "32ee24f3f9face63791bdb4c7d03d0ccb27054990e61c71388eb8112d54aa2f9",
+      "bytes": 3327
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "4249a924e4918212d2087dc0e22d12eb667d92411f65512bd422ef667a9adc16",
+      "bytes": 2177
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "8369f34029e9d2e5d9da2857e94812ca1f9918b86eb928880db4f9aaa7f62136",
+      "bytes": 4543
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "b75a79a6b35145f44c39d94abd527c5f21bdea784ed2b3f7640c8e9f62d843e4",
+      "bytes": 1460
+    },
+    {
+      "path": "LICENSE-DATA",
+      "sha256": "984f8515f48667183bff3b484be550d259a1895fc38d8fe159831d7969269173",
+      "bytes": 16448
+    },
+    {
+      "path": "README.md",
+      "sha256": "94b7b811912c0baa5ace67be3da1f99163febf00e89a6e2d75dbb2448f932d1a",
+      "bytes": 14920
+    },
+    {
+      "path": "README_zh.md",
+      "sha256": "9319a3872ff7f0f8047fca2694db12f8818cea0303c5fe074570ef9b1091bb65",
+      "bytes": 14967
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "756cc9e506ae4ee1a6f6c0507088b5cfc0dc8ba350fb2d2d46f1ffa72033adb6",
+      "bytes": 19
+    },
+    {
+      "path": "提示词与接口配置/example/bt_http_request.json",
+      "sha256": "f738d6e7be58c951c9b305746fbcf748b08f26179c591abe7e604e2a6db753ed",
+      "bytes": 53941
+    },
+    {
+      "path": "提示词与接口配置/example/bt_initial_input.json",
+      "sha256": "21a7e390df9ff98e75fd51df76c8550dbe560ba2ca98f6de293fcc86e6558453",
+      "bytes": 999
+    },
+    {
+      "path": "提示词与接口配置/example/bt_sdk_request.json",
+      "sha256": "147cb76736bf7f6df4029dd82934b104dd0d576f3bbfbca27f990baf3591c5f4",
+      "bytes": 55811
+    },
+    {
+      "path": "提示词与接口配置/example/step_after_reply_example_output.json",
+      "sha256": "593bd1ff2e4740f5b774dcc4e83d45f6514c602d17cee26d359891cc4e777a59",
+      "bytes": 203
+    },
+    {
+      "path": "提示词与接口配置/example/step_after_reply_simulated_input.json",
+      "sha256": "91144d0f476b80b3338753bf4eaf713f38710faf7d9cf25c877d54c586c6a1d5",
+      "bytes": 3604
+    },
+    {
+      "path": "提示词与接口配置/example/step_http_request.json",
+      "sha256": "7d18f1b45a390f910f65dcc39092b359fe804ae0bb650078801399386199dd62",
+      "bytes": 42593
+    },
+    {
+      "path": "提示词与接口配置/example/step_initial_input.json",
+      "sha256": "002c55a5cb4bc2e7735fbea0c9c4aad2cd422c1d2f119d67606d2653b21715fe",
+      "bytes": 1151
+    },
+    {
+      "path": "提示词与接口配置/example/step_sdk_request.json",
+      "sha256": "d4c144b527861764779b5d72ff338c9a959d26025f5733a76f11f018c3158916",
+      "bytes": 43823
+    },
+    {
+      "path": "提示词与接口配置/prompts/bt_system.txt",
+      "sha256": "47af8ab25cea340435b272a2827011647ff593dfb316e7ed9f9c873ab2940b3e",
+      "bytes": 8871
+    },
+    {
+      "path": "提示词与接口配置/prompts/step_system.txt",
+      "sha256": "c8a641be54466d9f0003444e34f10ff223fba093eec506eacbc83b86d16d7939",
+      "bytes": 6687
+    },
+    {
+      "path": "提示词与接口配置/release_config.json",
+      "sha256": "55d583a598f20e723eaa91166012383d9c581f11f561b5b69231ba193362e36d",
+      "bytes": 1157
+    },
+    {
+      "path": "提示词与接口配置/schemas/bt_input.schema.json",
+      "sha256": "e285c6e4eb10a1738e0a766b7ff74f8ce82077bc8492b6673d23472f77966e62",
+      "bytes": 4633
+    },
+    {
+      "path": "提示词与接口配置/schemas/bt_output.schema.json",
+      "sha256": "a0d9e8d62b9a14f35e307b06a10c961c79c229b9386b0d00ef6674c393951358",
+      "bytes": 22232
+    },
+    {
+      "path": "提示词与接口配置/schemas/decision.schema.json",
+      "sha256": "2a46e3a083fdf1860af67809d8ff16b15657c6ad672bf72b3aef5b6bf101b537",
+      "bytes": 12114
+    },
+    {
+      "path": "提示词与接口配置/schemas/result.schema.json",
+      "sha256": "fc60a2a27e449a55895f7a8d7463338cc521f6a0cd68637d676500eb3a5b087f",
+      "bytes": 38392
+    },
+    {
+      "path": "提示词与接口配置/schemas/step_input.schema.json",
+      "sha256": "52a43d0a4ffff10c634ecadc0d2fd1e9c5fdb2f97dfbf5d62afa13bbf2e316c0",
+      "bytes": 62349
+    },
+    {
+      "path": "提示词与接口配置/schemas/step_output.schema.json",
+      "sha256": "7d7472f1b3a4a033d5cb9f94b6a822c65f3704e2f01b65931c25ee947103c468",
+      "bytes": 14265
+    },
+    {
+      "path": "提示词与接口配置/shared_context.json",
+      "sha256": "58dd8801a3cf56934deaae3e182ce21cc49552ced3b7b39a021f1b11a5725970",
+      "bytes": 22639
+    },
+    {
+      "path": "数据集及参考计划/coverage_summary.json",
+      "sha256": "90f594b8635c651a007d592e338c7b052f2f53f0a0df8e8dd73f240d5610aa3e",
+      "bytes": 2938
+    },
+    {
+      "path": "数据集及参考计划/model_results_template.json",
+      "sha256": "fcf0a382842ed12c220063b330b81ca8cffba4ff5a486298fbbaf6e27439bb22",
+      "bytes": 60912
+    },
+    {
+      "path": "数据集及参考计划/reference_plans.json",
+      "sha256": "e2d900a9bdb865936663b853a3cc58bb6350879fe89f399d59b842e07c6a5d09",
+      "bytes": 65985
+    },
+    {
+      "path": "数据集及参考计划/test_inputs.json",
+      "sha256": "9bdcc2dcff4cded76b8dc23ada1e8ce15b9ef3452ab32a5b6f2113fe3a8bc324",
+      "bytes": 90113
+    },
+    {
+      "path": "数据集及参考计划/validation_data.json",
+      "sha256": "469a4d24ef87be2f4679303b1304a755c701af425e56579ccec2a02be0222b8f",
+      "bytes": 428979
+    },
+    {
+      "path": "运行代码与说明/README_zh.md",
+      "sha256": "5d408b99f907176d7be26f2d114a43bac1455a53a10671cc862b23ebb0dbd191",
+      "bytes": 556
+    },
+    {
+      "path": "运行代码与说明/STAGE_OUTPUTS.md",
+      "sha256": "395db8af35ea6d92ace523fdf5af0abe7c4d1834fbca8383e6a50529819e2576",
+      "bytes": 10813
+    },
+    {
+      "path": "运行代码与说明/adapters.py",
+      "sha256": "44dc517536f3e1a164a84a2ec3ac2ac39a0e5b3917481550fa2b915b01d520d9",
+      "bytes": 4817
+    },
+    {
+      "path": "运行代码与说明/build_reference_plans.py",
+      "sha256": "9aae8136d88c4ba83a1f539cecf332f319807b32920d21dd696bb13119c2cc51",
+      "bytes": 9743
+    },
+    {
+      "path": "运行代码与说明/generate_schemas.py",
+      "sha256": "be1e4b1d96e7ab83f793639faad1d70cb1d1b9adb806d5805c61671294877758",
+      "bytes": 9064
+    },
+    {
+      "path": "运行代码与说明/live_runner.py",
+      "sha256": "64e0b9d70d354f25b7ac836cde6e4b026dd9cacb2a8c2cd64d7a539306ee2524",
+      "bytes": 19322
+    },
+    {
+      "path": "运行代码与说明/mock_server.py",
+      "sha256": "0d5982bfea1b8f67774751ca4bb44f3b5fe1206b95b0ef7cb02efe22e2df71e6",
+      "bytes": 6634
+    },
+    {
+      "path": "运行代码与说明/observation_render.py",
+      "sha256": "f336796bafce059c3b629a59efc413c3e7d40774fdae6bc8fd033721b6f1d3c1",
+      "bytes": 1525
+    },
+    {
+      "path": "运行代码与说明/protocol.py",
+      "sha256": "f9ba762350375cecd0c560df5e9bb949f1c303fc0c7da1d5481acd6fc43ae437",
+      "bytes": 13421
+    },
+    {
+      "path": "运行代码与说明/summarize_results.py",
+      "sha256": "258e9fded3e32fae2bbcc6607be26d43699ff6d90f6d606678f89438c5b575f3",
+      "bytes": 9986
+    },
+    {
+      "path": "运行代码与说明/verification_report.json",
+      "sha256": "60d15c9320928ed1c09d893691326503275589afa185fc3fb318df522c7c74b9",
+      "bytes": 10191
+    },
+    {
+      "path": "运行代码与说明/verify_release.py",
+      "sha256": "97c7d0423d3844723f6d8ee63fd10221a968992f4b9273f33901de730eb9aa52",
+      "bytes": 16751
+    },
+    {
+      "path": "运行代码与说明/原始release_manifest_frozen.json",
+      "sha256": "78f2a625a8ad8fe762c7de451e1dc0307388389f5a64eace56b0a4b5450de978",
+      "bytes": 6333
+    },
+    {
+      "path": "运行代码与说明/各阶段预期输出.md",
+      "sha256": "6bfc335aa13981099cd4ede51c80b7c89d22098189985d430cc9489f759a8ed9",
+      "bytes": 11016
+    },
+    {
+      "path": "运行结果/mock_runs/costs.csv",
+      "sha256": "a0a610a4402f1d33634973c2a34bc457008f456d9c2f628a1493e2997df89dbc",
+      "bytes": 646
+    },
+    {
+      "path": "运行结果/mock_runs/episode_001_bt_167395ed-0998-48a5-9bde-341cdf39ce43.json",
+      "sha256": "ed2a584502bdae0059eba1341da3d5c12e4d616d01bac5c7f481cad9de1f6387",
+      "bytes": 68976
+    },
+    {
+      "path": "运行结果/mock_runs/episode_016_step_54e7c9ed-5300-429e-b783-0f859be75d60.json",
+      "sha256": "9568d9c46a2fd3131c939d6bdee660c2a8db75d9cd1acdfc2900b335d58caad3",
+      "bytes": 298619
+    },
+    {
+      "path": "运行结果/mock_runs/goals.csv",
+      "sha256": "f880e984c34d1abd019201d6535159dde76e9139afafb108208fca20c73d6155",
+      "bytes": 413
+    },
+    {
+      "path": "运行结果/mock_runs/scenarios.csv",
+      "sha256": "5fd7731bd427e38069d652a2cd745dd6569fac5e064e0abc0f47b942bcd23c54",
+      "bytes": 1101
+    },
+    {
+      "path": "运行结果/mock_runs/task_pass_rates.csv",
+      "sha256": "a15b059ad8b47ad96919960062743fafc78b8cb26a70a082c53ff882a533b301",
+      "bytes": 3325
+    }
+  ]
+}

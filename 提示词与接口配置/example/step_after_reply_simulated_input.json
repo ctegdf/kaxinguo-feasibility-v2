@@ -1,0 +1,136 @@
+{
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "task_id": "task_010",
+  "context_revision": 5,
+  "current_goal": {
+    "initial_request": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+    "constraints": [],
+    "completion_description": null
+  },
+  "task_context": {
+    "start_location_id": "living_room_bottom_center",
+    "resolved_entities": {
+      "locations": [
+        {
+          "mention": "书房",
+          "location_id": "study_top_right"
+        },
+        {
+          "mention": "厨房",
+          "location_id": "kitchen_left_upper"
+        }
+      ],
+      "return_location_id": null,
+      "follow_target_ref": null
+    }
+  },
+  "robot_state": {
+    "current_location_id": "study_top_right",
+    "motion_status": "stopped"
+  },
+  "events": [
+    {
+      "event_id": "event_001",
+      "context_revision": 1,
+      "decision": {
+        "skill": "MOVE_TO",
+        "args": {
+          "location_id": "study_top_right"
+        },
+        "decision": "CALL"
+      },
+      "result": {
+        "status": "SUCCESS",
+        "data": {
+          "arrived_location_id": "study_top_right"
+        },
+        "robot_state": {
+          "current_location_id": "study_top_right",
+          "motion_status": "stopped"
+        }
+      }
+    },
+    {
+      "event_id": "event_002",
+      "context_revision": 2,
+      "decision": {
+        "skill": "OBSERVE",
+        "args": {
+          "view_id": "view_study_top_right_overview",
+          "field": "visible_items"
+        },
+        "decision": "CALL"
+      },
+      "result": {
+        "status": "SUCCESS",
+        "data": {
+          "location_id": "study_top_right",
+          "view_id": "view_study_top_right_overview",
+          "field": "visible_items",
+          "value": [
+            "书",
+            "台灯",
+            "杯子"
+          ],
+          "question": "书桌上有哪些清楚可见的物品？",
+          "summary": "书桌上看到了书、台灯、杯子。"
+        },
+        "robot_state": {
+          "current_location_id": "study_top_right",
+          "motion_status": "stopped"
+        }
+      }
+    },
+    {
+      "event_id": "event_003",
+      "context_revision": 3,
+      "decision": {
+        "decision": "CALL",
+        "skill": "SAY",
+        "args": {
+          "text": "书桌上看到了书、台灯、杯子。"
+        }
+      },
+      "result": {
+        "status": "SUCCESS",
+        "data": {
+          "spoken_text": "书桌上看到了书、台灯、杯子。"
+        },
+        "robot_state": {
+          "current_location_id": "study_top_right",
+          "motion_status": "stopped"
+        }
+      }
+    },
+    {
+      "event_id": "event_004",
+      "context_revision": 4,
+      "decision": {
+        "decision": "ASK",
+        "question": "还需要我查看厨房操作台吗？",
+        "reply_spec": {
+          "kind": "CONTINUE_OR_STOP"
+        }
+      },
+      "result": {
+        "status": "SUCCESS",
+        "data": {
+          "question": "还需要我查看厨房操作台吗？",
+          "reply_spec": {
+            "kind": "CONTINUE_OR_STOP"
+          },
+          "raw_text": "需要，继续看看厨房。",
+          "value": "CONTINUE"
+        },
+        "robot_state": {
+          "current_location_id": "study_top_right",
+          "motion_status": "stopped"
+        }
+      }
+    }
+  ],
+  "runtime": {
+    "state": "DECIDING",
+    "active_call_id": null
+  }
+}

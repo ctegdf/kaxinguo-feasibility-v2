@@ -1,0 +1,518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kaxinguo_feasibility_v1:decision",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "const": "CALL"
+        },
+        "skill": {
+          "const": "MOVE_TO"
+        },
+        "args": {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "type": "string",
+              "enum": [
+                "bedroom_top_left",
+                "bedroom_top_center",
+                "study_top_right",
+                "kitchen_left_upper",
+                "balcony_left",
+                "bathroom_left_middle_upper",
+                "bathroom_left_middle_lower",
+                "bedroom_bottom_left",
+                "dining_area_top_center",
+                "central_hall_center",
+                "living_room_bottom_center",
+                "balcony_bottom",
+                "home_entry_right"
+              ]
+            }
+          },
+          "required": [
+            "location_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "decision",
+        "skill",
+        "args"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "const": "CALL"
+        },
+        "skill": {
+          "const": "FOLLOW"
+        },
+        "args": {
+          "type": "object",
+          "properties": {
+            "target_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "until_location_id": {
+              "type": "string",
+              "enum": [
+                "bedroom_top_left",
+                "bedroom_top_center",
+                "study_top_right",
+                "kitchen_left_upper",
+                "balcony_left",
+                "bathroom_left_middle_upper",
+                "bathroom_left_middle_lower",
+                "bedroom_bottom_left",
+                "dining_area_top_center",
+                "central_hall_center",
+                "living_room_bottom_center",
+                "balcony_bottom",
+                "home_entry_right"
+              ]
+            }
+          },
+          "required": [
+            "target_ref",
+            "until_location_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "decision",
+        "skill",
+        "args"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "const": "CALL"
+        },
+        "skill": {
+          "const": "OBSERVE"
+        },
+        "args": {
+          "$ref": "#/$defs/observe_args"
+        }
+      },
+      "required": [
+        "decision",
+        "skill",
+        "args"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "const": "CALL"
+        },
+        "skill": {
+          "const": "SAY"
+        },
+        "args": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "decision",
+        "skill",
+        "args"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "const": "ASK"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reply_spec": {
+          "$ref": "#/$defs/reply_spec"
+        }
+      },
+      "required": [
+        "decision",
+        "question",
+        "reply_spec"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "const": "FINISH"
+        },
+        "outcome": {
+          "enum": [
+            "completed",
+            "blocked"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "decision",
+        "outcome",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "observe_args": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bedroom_top_left_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bedroom_top_center_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions",
+                "cup_visible",
+                "quiet_sign_visible",
+                "visible_items"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_kitchen_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions",
+                "cup_visible",
+                "notice_text",
+                "visible_items"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_balcony_left_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bathroom_upper_from_entry"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bathroom_lower_from_entry"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bedroom_bottom_left_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_dining_area_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions",
+                "tableware_visible"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_living_room_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_balcony_bottom_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_home_entry_inside"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "reply_spec": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "LOCATION"
+            },
+            "allowed_location_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "bedroom_top_left",
+                  "bedroom_top_center",
+                  "study_top_right",
+                  "kitchen_left_upper",
+                  "balcony_left",
+                  "bathroom_left_middle_upper",
+                  "bathroom_left_middle_lower",
+                  "bedroom_bottom_left",
+                  "dining_area_top_center",
+                  "central_hall_center",
+                  "living_room_bottom_center",
+                  "balcony_bottom",
+                  "home_entry_right"
+                ]
+              },
+              "minItems": 2,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "allowed_location_ids"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CONTINUE_OR_STOP"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "TARGET_REF"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

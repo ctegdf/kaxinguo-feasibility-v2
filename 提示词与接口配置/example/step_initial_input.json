@@ -1,0 +1,40 @@
+{
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "task_id": "task_001",
+  "context_revision": 1,
+  "current_goal": {
+    "initial_request": "去左上卧室看看当前视野里有没有人。有人的话就在左上卧室说“请到餐区吃饭”，说完结束；没人的话回客厅告诉我左上卧室没有看到人，然后结束。",
+    "constraints": [],
+    "completion_description": null
+  },
+  "task_context": {
+    "start_location_id": "living_room_bottom_center",
+    "resolved_entities": {
+      "locations": [
+        {
+          "mention": "左上卧室",
+          "location_id": "bedroom_top_left"
+        },
+        {
+          "mention": "餐区",
+          "location_id": "dining_area_top_center"
+        },
+        {
+          "mention": "客厅",
+          "location_id": "living_room_bottom_center"
+        }
+      ],
+      "return_location_id": "living_room_bottom_center",
+      "follow_target_ref": null
+    }
+  },
+  "robot_state": {
+    "current_location_id": "living_room_bottom_center",
+    "motion_status": "stopped"
+  },
+  "events": [],
+  "runtime": {
+    "state": "DECIDING",
+    "active_call_id": null
+  }
+}

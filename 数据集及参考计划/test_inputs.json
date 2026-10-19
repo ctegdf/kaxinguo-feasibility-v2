@@ -1,0 +1,2479 @@
+{
+  "schema_version": "home_branch_planning_test_inputs.v3",
+  "dataset_id": "home_branch_planning_dataset_v3",
+  "source_dataset_sha256": "ff3edc07fd5c37765121ba406c02e666e14d0a2fe8063f3aa513fc64995d6b06",
+  "unique_goals": 10,
+  "test_cases": 48,
+  "usage": {
+    "send_to_model": "按 architecture 取 shared_context 和当前 case.payload，通过 adapters.py 装配；不发送整个 cases 数组、test_id、验证文件或参考计划。",
+    "pairing": "test_id 与 validation_data.json 一一对应。",
+    "repeated_inputs": "48个情境对应10个目标；同目标初始输入相同，实际反馈不同。",
+    "reset": "每个 test_id 开始前重置模型上下文与机器人状态，不能继承其他情境的观察。",
+    "feedback": "后续只追加实际动作产生的反馈及已到释放时机的用户文本；本文件不包含未来反馈或答案。"
+  },
+  "shared_context": {
+    "Semantic_Map": {
+      "schema_version": "kaxinguo.planner_semantic_map.v1",
+      "map_id": "home_floorplan_01",
+      "map_version": 2,
+      "scope": "PLANNER_SEMANTIC_CONTEXT_ONLY",
+      "source": {
+        "asset_name": "08a8c58e-2e13-42ed-8dd6-9a3a5142e672.png",
+        "sha256": "6c5039263470e2e758e5bc2dc21a6dc5f6b85e5eea6a861c1fb996c778750457",
+        "orientation_rule": "top, bottom, left and right refer only to the source image"
+      },
+      "planner_rules": {
+        "location_id_is_stable": true,
+        "move_actions_use_location_id": true,
+        "photo_actions_use_view_id": true,
+        "generic_ambiguous_names_require_upstream_resolution": true,
+        "topology_is_semantic_not_a_navigation_path": true,
+        "landmarks_describe_the_floor_plan_layout_not_the_current_scene": true,
+        "do_not_infer_current_people_objects_or_activities_from_this_map": true
+      },
+      "locations": [
+        {
+          "location_id": "bedroom_top_left",
+          "name": "左上卧室",
+          "type": "BEDROOM",
+          "aliases": [
+            "左上卧室",
+            "上方左侧卧室",
+            "卧室一"
+          ],
+          "connected_to": [
+            "dining_area_top_center"
+          ],
+          "layout_landmarks": [
+            "床",
+            "衣柜"
+          ],
+          "views": [
+            {
+              "view_id": "view_bedroom_top_left_overview",
+              "purpose": "查看左上卧室整体情况",
+              "pose_semantics": {
+                "position_relation": "房间入口或室内概览位置",
+                "look_at": [
+                  "床区",
+                  "主要地面区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "bedroom_top_center",
+          "name": "上中卧室",
+          "type": "BEDROOM",
+          "aliases": [
+            "上中卧室",
+            "上方中间卧室",
+            "卧室二"
+          ],
+          "connected_to": [
+            "dining_area_top_center"
+          ],
+          "layout_landmarks": [
+            "床",
+            "衣柜"
+          ],
+          "views": [
+            {
+              "view_id": "view_bedroom_top_center_overview",
+              "purpose": "查看上中卧室整体情况",
+              "pose_semantics": {
+                "position_relation": "房间入口或室内概览位置",
+                "look_at": [
+                  "床区",
+                  "主要地面区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "study_top_right",
+          "name": "右上书房",
+          "type": "STUDY",
+          "aliases": [
+            "书房",
+            "右上书房",
+            "上方右侧房间"
+          ],
+          "connected_to": [
+            "dining_area_top_center"
+          ],
+          "layout_landmarks": [
+            "书桌",
+            "椅子",
+            "储物柜"
+          ],
+          "views": [
+            {
+              "view_id": "view_study_top_right_overview",
+              "purpose": "查看书房主要活动区域",
+              "pose_semantics": {
+                "position_relation": "房间入口或室内概览位置",
+                "look_at": [
+                  "书桌区",
+                  "座椅区"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "kitchen_left_upper",
+          "name": "左侧厨房",
+          "type": "KITCHEN",
+          "aliases": [
+            "厨房",
+            "左侧厨房",
+            "灶台那边"
+          ],
+          "connected_to": [
+            "dining_area_top_center",
+            "balcony_left"
+          ],
+          "layout_landmarks": [
+            "灶台",
+            "水槽",
+            "操作台"
+          ],
+          "views": [
+            {
+              "view_id": "view_kitchen_overview",
+              "purpose": "查看厨房整体情况",
+              "pose_semantics": {
+                "position_relation": "厨房入口或整体概览位置",
+                "look_at": [
+                  "厨房主要区域"
+                ],
+                "framing": "WIDE"
+              }
+            },
+            {
+              "view_id": "view_kitchen_work_area",
+              "purpose": "查看是否有人做饭以及正在做什么",
+              "pose_semantics": {
+                "position_relation": "能覆盖操作区的位置",
+                "look_at": [
+                  "灶台",
+                  "水槽",
+                  "操作台"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "balcony_left",
+          "name": "左侧阳台",
+          "type": "BALCONY",
+          "aliases": [
+            "左侧阳台",
+            "厨房旁阳台"
+          ],
+          "connected_to": [
+            "kitchen_left_upper"
+          ],
+          "layout_landmarks": [
+            "植物区"
+          ],
+          "views": [
+            {
+              "view_id": "view_balcony_left_overview",
+              "purpose": "查看左侧阳台整体情况",
+              "pose_semantics": {
+                "position_relation": "阳台入口或概览位置",
+                "look_at": [
+                  "阳台地面",
+                  "植物区"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "bathroom_left_middle_upper",
+          "name": "左侧上卫生间",
+          "type": "BATHROOM",
+          "aliases": [
+            "左侧上卫生间",
+            "上卫生间",
+            "卫生间一"
+          ],
+          "connected_to": [
+            "central_hall_center"
+          ],
+          "layout_landmarks": [
+            "坐便器",
+            "洗手盆",
+            "淋浴区"
+          ],
+          "views": [
+            {
+              "view_id": "view_bathroom_upper_from_entry",
+              "purpose": "从入口查看上卫生间整体情况",
+              "pose_semantics": {
+                "position_relation": "卫生间入口",
+                "look_at": [
+                  "卫生间主要区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "bathroom_left_middle_lower",
+          "name": "左侧下卫生间",
+          "type": "BATHROOM",
+          "aliases": [
+            "左侧下卫生间",
+            "下卫生间",
+            "卫生间二",
+            "带浴缸卫生间"
+          ],
+          "connected_to": [
+            "central_hall_center"
+          ],
+          "layout_landmarks": [
+            "坐便器",
+            "洗手盆",
+            "浴缸"
+          ],
+          "views": [
+            {
+              "view_id": "view_bathroom_lower_from_entry",
+              "purpose": "从入口查看下卫生间整体情况",
+              "pose_semantics": {
+                "position_relation": "卫生间入口",
+                "look_at": [
+                  "卫生间主要区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "bedroom_bottom_left",
+          "name": "左下卧室",
+          "type": "BEDROOM",
+          "aliases": [
+            "左下卧室",
+            "下方左侧卧室",
+            "卧室三"
+          ],
+          "connected_to": [
+            "central_hall_center"
+          ],
+          "layout_landmarks": [
+            "床",
+            "衣柜",
+            "墙边柜体"
+          ],
+          "views": [
+            {
+              "view_id": "view_bedroom_bottom_left_overview",
+              "purpose": "查看左下卧室整体情况",
+              "pose_semantics": {
+                "position_relation": "房间入口或室内概览位置",
+                "look_at": [
+                  "床区",
+                  "主要地面区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "dining_area_top_center",
+          "name": "上部餐区",
+          "type": "DINING_AREA",
+          "aliases": [
+            "餐厅",
+            "餐区",
+            "饭厅",
+            "餐桌旁"
+          ],
+          "connected_to": [
+            "bedroom_top_left",
+            "bedroom_top_center",
+            "study_top_right",
+            "kitchen_left_upper",
+            "central_hall_center",
+            "home_entry_right"
+          ],
+          "layout_landmarks": [
+            "餐桌",
+            "餐椅"
+          ],
+          "views": [
+            {
+              "view_id": "view_dining_area_overview",
+              "purpose": "查看餐区整体情况",
+              "pose_semantics": {
+                "position_relation": "餐区概览位置",
+                "look_at": [
+                  "餐桌区",
+                  "周边活动区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "central_hall_center",
+          "name": "中央过厅",
+          "type": "CIRCULATION_AREA",
+          "aliases": [
+            "中央过厅",
+            "过厅",
+            "中央区域"
+          ],
+          "connected_to": [
+            "dining_area_top_center",
+            "bathroom_left_middle_upper",
+            "bathroom_left_middle_lower",
+            "bedroom_bottom_left",
+            "living_room_bottom_center"
+          ],
+          "layout_landmarks": [
+            "开放通行区域"
+          ],
+          "views": []
+        },
+        {
+          "location_id": "living_room_bottom_center",
+          "name": "下部客厅",
+          "type": "LIVING_ROOM",
+          "aliases": [
+            "客厅",
+            "下部客厅",
+            "沙发区",
+            "茶几旁"
+          ],
+          "connected_to": [
+            "central_hall_center",
+            "balcony_bottom"
+          ],
+          "layout_landmarks": [
+            "沙发",
+            "茶几",
+            "电视柜"
+          ],
+          "views": [
+            {
+              "view_id": "view_living_room_overview",
+              "purpose": "查看客厅整体情况",
+              "pose_semantics": {
+                "position_relation": "客厅概览位置",
+                "look_at": [
+                  "沙发区",
+                  "茶几区",
+                  "主要活动区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "balcony_bottom",
+          "name": "下方阳台",
+          "type": "BALCONY",
+          "aliases": [
+            "下方阳台",
+            "客厅阳台",
+            "客厅外阳台"
+          ],
+          "connected_to": [
+            "living_room_bottom_center"
+          ],
+          "layout_landmarks": [
+            "座椅",
+            "小桌",
+            "植物区"
+          ],
+          "views": [
+            {
+              "view_id": "view_balcony_bottom_overview",
+              "purpose": "查看下方阳台整体情况",
+              "pose_semantics": {
+                "position_relation": "阳台入口或概览位置",
+                "look_at": [
+                  "阳台主要区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        },
+        {
+          "location_id": "home_entry_right",
+          "name": "右侧入户区",
+          "type": "ENTRY_AREA",
+          "aliases": [
+            "门口",
+            "入户区",
+            "入户门内侧",
+            "右侧入口"
+          ],
+          "connected_to": [
+            "dining_area_top_center"
+          ],
+          "layout_landmarks": [
+            "入户门"
+          ],
+          "views": [
+            {
+              "view_id": "view_home_entry_inside",
+              "purpose": "查看入户门内侧区域",
+              "pose_semantics": {
+                "position_relation": "室内一侧",
+                "look_at": [
+                  "入户门",
+                  "门内区域"
+                ],
+                "framing": "WIDE"
+              }
+            }
+          ]
+        }
+      ],
+      "non_destination_zones": [
+        {
+          "zone_id": "indoor_spiral_stair_right_upper",
+          "name": "室内旋转楼梯",
+          "type": "STAIRCASE",
+          "reason": "不属于当前规划器可调用的语义目的地"
+        },
+        {
+          "zone_id": "external_common_landing_right",
+          "name": "右侧公共平台",
+          "type": "BUILDING_COMMON_AREA",
+          "reason": "位于当前家庭语义地图之外"
+        },
+        {
+          "zone_id": "external_elevator_right",
+          "name": "右侧电梯",
+          "type": "ELEVATOR",
+          "reason": "当前原子功能中没有电梯操作"
+        },
+        {
+          "zone_id": "external_staircase_right",
+          "name": "右侧公共楼梯",
+          "type": "STAIRCASE",
+          "reason": "位于当前家庭语义地图之外"
+        }
+      ],
+      "ambiguous_aliases": [
+        {
+          "alias": "卧室",
+          "candidates": [
+            "bedroom_top_left",
+            "bedroom_top_center",
+            "bedroom_bottom_left"
+          ]
+        },
+        {
+          "alias": "卫生间",
+          "candidates": [
+            "bathroom_left_middle_upper",
+            "bathroom_left_middle_lower"
+          ]
+        },
+        {
+          "alias": "阳台",
+          "candidates": [
+            "balcony_left",
+            "balcony_bottom"
+          ]
+        },
+        {
+          "alias": "主卧或次卧",
+          "candidates": [
+            "bedroom_top_left",
+            "bedroom_top_center",
+            "bedroom_bottom_left"
+          ],
+          "note": "户型图无法确定，应由上游语义消解模块绑定"
+        }
+      ]
+    },
+    "Skill_Definitions": {
+      "MOVE_TO": {
+        "description": "移动到一个地图目的地；不展开导航途经点。",
+        "args": {
+          "location_id": "语义地图 locations 中的稳定 ID"
+        }
+      },
+      "FOLLOW": {
+        "description": "跟随语义指代的对象，直到到达指定地图地点。",
+        "args": {
+          "target_ref": "原始或上下文补全后的语义指代表达，不生成人物 ID",
+          "until_location_id": "跟随结束地点的地图 ID"
+        }
+      },
+      "OBSERVE": {
+        "description": "在当前位置用一个合法视角查询一个固定信息项；问题由公共程序按 view_id 与 field 生成。",
+        "args": {
+          "view_id": "地图中属于当前位置的视角ID",
+          "field": "单个字段名，必须属于 Observation_Queries[view_id].questions"
+        },
+        "field_definitions": {
+          "people_count": "指定视角中清楚可见的人数，非整个住宅或不可见区域的人数。",
+          "people_descriptions": "同一视角中人物的自然语言外观描述，无 target_id。",
+          "cup_visible": "指定观察区域中是否清楚可见杯子。",
+          "tableware_visible": "指定餐桌区域中是否清楚可见摆放的餐具。",
+          "notice_text": "画面中通知卡的原文；无卡时为空字符串。",
+          "quiet_sign_visible": "书桌上是否清楚可见“请勿打扰”标识。",
+          "visible_items": "所问区域中清楚可见的物品名称列表。"
+        },
+        "result": {
+          "status": "SUCCESS",
+          "data": {
+            "location_id": "实际地点",
+            "view_id": "实际视角",
+            "field": "请求的单个字段",
+            "value": "该字段的真实结果",
+            "question": "程序生成的问题，仅供记录",
+            "summary": "同一个结果的固定句式表述，用于播报；不增加观察信息"
+          }
+        }
+      },
+      "SAY": {
+        "description": "语音播报给定文本；只在成功反馈后才记为已经播报。",
+        "args": {
+          "text": "非空播报文本；不隐含提问、等待或用户回复。"
+        }
+      }
+    },
+    "Shared_Protocol": {
+      "scope": "NORMAL_EXECUTION_TASK_LOGIC_BRANCHING_ONLY",
+      "skill_execution_assumption": "所有合法技能调用正常成功；不模拟执行失败、重试或不确定识别。非法参数及错误顺序仍属于规划问题。",
+      "scene_assumption": "每个 episode 的场景事实由作者显式设定，在本目标的观察阶段保持不变；视角内目标清楚可见。",
+      "perception_source": "SYNTHETIC_SEMANTIC_ORACLE_NO_IMAGES",
+      "max_decisions_per_episode": 40,
+      "end_control": {
+        "decision": "FINISH",
+        "outcome": "completed"
+      },
+      "control_note": "ASK 与 FINISH 是控制操作；物理技能仅 MOVE_TO、FOLLOW、OBSERVE、SAY。",
+      "robot_message_rule": "模型动作文本不等于执行成功；必须读取 SUCCESS 反馈后继续。",
+      "observation_rule": "一次 OBSERVE 只查询一个 field；到达对应地点后才返回本次 value。物品列表是一个信息项，不与人数等其他信息合并。",
+      "map_rule": "地图地标不是当前场景事实；只使用地图可调用地点，不把 connected_to 展开为任务途经点。",
+      "follow_rule": "规划层仅传递语义指代；人物身份消解与视觉 grounding 均不评分。",
+      "dialogue_scope": "仅明确地点选择、继续或停止、语言跟随对象；不处理任意目标修改。",
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "ask_channel": "INTERACTION_WINDOW",
+      "replan_enabled": false,
+      "unknown_observation_policy": "首轮可行性集不产生 UNCERTAIN。若实际输入超出此合同，停止本情境并标记 OUT_OF_SCOPE_INPUT，不映射为 false 或 0，也不计为模型规划错误。",
+      "limit_counting": "每个已接受的 CALL、ASK、FINISH 各计一次；一体式 CONDITION 与容器不计物理动作，另记树节点数。",
+      "completed_meaning": "只表示当前目标或生效分支已经实际满足；FINISH/END 是完成声明，不是独立正确性证明。"
+    },
+    "Observation_Queries": {
+      "view_bedroom_top_left_overview": {
+        "location_id": "bedroom_top_left",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_bedroom_top_center_overview": {
+        "location_id": "bedroom_top_center",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_study_top_right_overview": {
+        "location_id": "study_top_right",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。",
+          "cup_visible": "书桌上是否清楚可见杯子？",
+          "quiet_sign_visible": "书桌上是否有“请勿打扰”标识？",
+          "visible_items": "书桌上有哪些清楚可见的物品？"
+        }
+      },
+      "view_kitchen_overview": {
+        "location_id": "kitchen_left_upper",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_kitchen_work_area": {
+        "location_id": "kitchen_left_upper",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。",
+          "cup_visible": "厨房操作台上是否清楚可见杯子？",
+          "notice_text": "厨房操作台上的通知卡写了什么？请返回原文。",
+          "visible_items": "厨房操作台上有哪些清楚可见的物品？"
+        }
+      },
+      "view_balcony_left_overview": {
+        "location_id": "balcony_left",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_bathroom_upper_from_entry": {
+        "location_id": "bathroom_left_middle_upper",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_bathroom_lower_from_entry": {
+        "location_id": "bathroom_left_middle_lower",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_bedroom_bottom_left_overview": {
+        "location_id": "bedroom_bottom_left",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_dining_area_overview": {
+        "location_id": "dining_area_top_center",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。",
+          "tableware_visible": "餐桌上是否摆有清楚可见的餐具？"
+        }
+      },
+      "view_living_room_overview": {
+        "location_id": "living_room_bottom_center",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_balcony_bottom_overview": {
+        "location_id": "balcony_bottom",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      },
+      "view_home_entry_inside": {
+        "location_id": "home_entry_right",
+        "questions": {
+          "people_count": "当前指定视野里清楚可见的人数是多少？",
+          "people_descriptions": "请描述当前指定视野里各个人的外观。"
+        }
+      }
+    },
+    "protocol_version": "kaxinguo_feasibility_v1",
+    "Control_Definitions": {
+      "ASK": {
+        "channel": "INTERACTION_WINDOW",
+        "description": "两套架构都在同一窗口呈现问题，暂停并等待用户原始文本，再按 reply_spec 解析；不自动语音播报。",
+        "args": {
+          "question": "必要的问题；CONTINUE_OR_STOP 使用肯定方向的继续询问。",
+          "reply_spec": "LOCATION（含允许地点）、CONTINUE_OR_STOP 或 TARGET_REF"
+        },
+        "result": "status=SUCCESS 仅在收到并解析简单回复后产生；data 含 question、reply_spec、raw_text、value。"
+      },
+      "FINISH": {
+        "outcomes": [
+          "completed",
+          "blocked"
+        ],
+        "description": "结束控制；message 仅在窗口显示，不触发 SAY。STOP 是任务定义的可选分支结束，通常是 completed。"
+      }
+    }
+  },
+  "cases": [
+    {
+      "test_id": "episode_001",
+      "task_id": "task_001",
+      "payload": {
+        "Task": {
+          "task_id": "task_001",
+          "instruction": "去左上卧室看看当前视野里有没有人。有人的话就在左上卧室说“请到餐区吃饭”，说完结束；没人的话回客厅告诉我左上卧室没有看到人，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "左上卧室",
+                "location_id": "bedroom_top_left"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_002",
+      "task_id": "task_001",
+      "payload": {
+        "Task": {
+          "task_id": "task_001",
+          "instruction": "去左上卧室看看当前视野里有没有人。有人的话就在左上卧室说“请到餐区吃饭”，说完结束；没人的话回客厅告诉我左上卧室没有看到人，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "左上卧室",
+                "location_id": "bedroom_top_left"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_003",
+      "task_id": "task_002",
+      "payload": {
+        "Task": {
+          "task_id": "task_002",
+          "instruction": "按厨房、书房、左侧阳台的顺序，逐处看看当前视野里有没有人。第一次看到人时就在那一处说“会议开始了”，随后结束，不再去后面的地点；三处都没看到人就回客厅告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "左侧阳台",
+                "location_id": "balcony_left"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_004",
+      "task_id": "task_002",
+      "payload": {
+        "Task": {
+          "task_id": "task_002",
+          "instruction": "按厨房、书房、左侧阳台的顺序，逐处看看当前视野里有没有人。第一次看到人时就在那一处说“会议开始了”，随后结束，不再去后面的地点；三处都没看到人就回客厅告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "左侧阳台",
+                "location_id": "balcony_left"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_005",
+      "task_id": "task_002",
+      "payload": {
+        "Task": {
+          "task_id": "task_002",
+          "instruction": "按厨房、书房、左侧阳台的顺序，逐处看看当前视野里有没有人。第一次看到人时就在那一处说“会议开始了”，随后结束，不再去后面的地点；三处都没看到人就回客厅告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "左侧阳台",
+                "location_id": "balcony_left"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_006",
+      "task_id": "task_002",
+      "payload": {
+        "Task": {
+          "task_id": "task_002",
+          "instruction": "按厨房、书房、左侧阳台的顺序，逐处看看当前视野里有没有人。第一次看到人时就在那一处说“会议开始了”，随后结束，不再去后面的地点；三处都没看到人就回客厅告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "左侧阳台",
+                "location_id": "balcony_left"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_007",
+      "task_id": "task_003",
+      "payload": {
+        "Task": {
+          "task_id": "task_003",
+          "instruction": "去书房先看看有没有人。没有人就回客厅说明并结束；有人时，再看看书桌上有没有杯子。有杯子就在书房说“记得喝水”并结束；没有杯子就去厨房看看操作台上有没有杯子，在厨房把观察结果告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_008",
+      "task_id": "task_003",
+      "payload": {
+        "Task": {
+          "task_id": "task_003",
+          "instruction": "去书房先看看有没有人。没有人就回客厅说明并结束；有人时，再看看书桌上有没有杯子。有杯子就在书房说“记得喝水”并结束；没有杯子就去厨房看看操作台上有没有杯子，在厨房把观察结果告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_009",
+      "task_id": "task_003",
+      "payload": {
+        "Task": {
+          "task_id": "task_003",
+          "instruction": "去书房先看看有没有人。没有人就回客厅说明并结束；有人时，再看看书桌上有没有杯子。有杯子就在书房说“记得喝水”并结束；没有杯子就去厨房看看操作台上有没有杯子，在厨房把观察结果告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_010",
+      "task_id": "task_004",
+      "payload": {
+        "Task": {
+          "task_id": "task_004",
+          "instruction": "去餐区看看当前视野里有没有人，以及餐桌上是否摆有餐具。只有这两个条件都满足，才去左上卧室说“可以来餐区吃饭了”；其他情况都回客厅告诉我实际观察到的人和餐具情况。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "左上卧室",
+                "location_id": "bedroom_top_left"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_011",
+      "task_id": "task_004",
+      "payload": {
+        "Task": {
+          "task_id": "task_004",
+          "instruction": "去餐区看看当前视野里有没有人，以及餐桌上是否摆有餐具。只有这两个条件都满足，才去左上卧室说“可以来餐区吃饭了”；其他情况都回客厅告诉我实际观察到的人和餐具情况。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "左上卧室",
+                "location_id": "bedroom_top_left"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_012",
+      "task_id": "task_004",
+      "payload": {
+        "Task": {
+          "task_id": "task_004",
+          "instruction": "去餐区看看当前视野里有没有人，以及餐桌上是否摆有餐具。只有这两个条件都满足，才去左上卧室说“可以来餐区吃饭了”；其他情况都回客厅告诉我实际观察到的人和餐具情况。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "左上卧室",
+                "location_id": "bedroom_top_left"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_013",
+      "task_id": "task_004",
+      "payload": {
+        "Task": {
+          "task_id": "task_004",
+          "instruction": "去餐区看看当前视野里有没有人，以及餐桌上是否摆有餐具。只有这两个条件都满足，才去左上卧室说“可以来餐区吃饭了”；其他情况都回客厅告诉我实际观察到的人和餐具情况。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "左上卧室",
+                "location_id": "bedroom_top_left"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_014",
+      "task_id": "task_005",
+      "payload": {
+        "Task": {
+          "task_id": "task_005",
+          "instruction": "去书房看看当前视野里有几个人。没人就回客厅告诉我并结束；只有一个人就跟随书房里唯一的人到客厅；有多个人就先问我跟谁，等我回答后跟随我指定的人到客厅。跟随到客厅后说“已经跟随到客厅了”，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_015",
+      "task_id": "task_005",
+      "payload": {
+        "Task": {
+          "task_id": "task_005",
+          "instruction": "去书房看看当前视野里有几个人。没人就回客厅告诉我并结束；只有一个人就跟随书房里唯一的人到客厅；有多个人就先问我跟谁，等我回答后跟随我指定的人到客厅。跟随到客厅后说“已经跟随到客厅了”，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_016",
+      "task_id": "task_005",
+      "payload": {
+        "Task": {
+          "task_id": "task_005",
+          "instruction": "去书房看看当前视野里有几个人。没人就回客厅告诉我并结束；只有一个人就跟随书房里唯一的人到客厅；有多个人就先问我跟谁，等我回答后跟随我指定的人到客厅。跟随到客厅后说“已经跟随到客厅了”，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_017",
+      "task_id": "task_005",
+      "payload": {
+        "Task": {
+          "task_id": "task_005",
+          "instruction": "去书房看看当前视野里有几个人。没人就回客厅告诉我并结束；只有一个人就跟随书房里唯一的人到客厅；有多个人就先问我跟谁，等我回答后跟随我指定的人到客厅。跟随到客厅后说“已经跟随到客厅了”，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_018",
+      "task_id": "task_006",
+      "payload": {
+        "Task": {
+          "task_id": "task_006",
+          "instruction": "先去厨房，再去书房，分别看看当前视野里有没有人。只有一处有人，就在有人的那一处说“会议开始了”；两处都有人，就问我选择哪一处播报，等我回答后去选定地点播报；两处都没人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_019",
+      "task_id": "task_006",
+      "payload": {
+        "Task": {
+          "task_id": "task_006",
+          "instruction": "先去厨房，再去书房，分别看看当前视野里有没有人。只有一处有人，就在有人的那一处说“会议开始了”；两处都有人，就问我选择哪一处播报，等我回答后去选定地点播报；两处都没人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_020",
+      "task_id": "task_006",
+      "payload": {
+        "Task": {
+          "task_id": "task_006",
+          "instruction": "先去厨房，再去书房，分别看看当前视野里有没有人。只有一处有人，就在有人的那一处说“会议开始了”；两处都有人，就问我选择哪一处播报，等我回答后去选定地点播报；两处都没人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_021",
+      "task_id": "task_006",
+      "payload": {
+        "Task": {
+          "task_id": "task_006",
+          "instruction": "先去厨房，再去书房，分别看看当前视野里有没有人。只有一处有人，就在有人的那一处说“会议开始了”；两处都有人，就问我选择哪一处播报，等我回答后去选定地点播报；两处都没人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_022",
+      "task_id": "task_006",
+      "payload": {
+        "Task": {
+          "task_id": "task_006",
+          "instruction": "先去厨房，再去书房，分别看看当前视野里有没有人。只有一处有人，就在有人的那一处说“会议开始了”；两处都有人，就问我选择哪一处播报，等我回答后去选定地点播报；两处都没人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_023",
+      "task_id": "task_007",
+      "payload": {
+        "Task": {
+          "task_id": "task_007",
+          "instruction": "去厨房查看操作台上的通知卡。卡片写着“会议开始”，就去书房说“会议开始了”；写着“会议取消”，就回客厅说“会议取消了”；写着“改在餐区”，就去餐区说“请到餐区开会”。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_024",
+      "task_id": "task_007",
+      "payload": {
+        "Task": {
+          "task_id": "task_007",
+          "instruction": "去厨房查看操作台上的通知卡。卡片写着“会议开始”，就去书房说“会议开始了”；写着“会议取消”，就回客厅说“会议取消了”；写着“改在餐区”，就去餐区说“请到餐区开会”。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_025",
+      "task_id": "task_007",
+      "payload": {
+        "Task": {
+          "task_id": "task_007",
+          "instruction": "去厨房查看操作台上的通知卡。卡片写着“会议开始”，就去书房说“会议开始了”；写着“会议取消”，就回客厅说“会议取消了”；写着“改在餐区”，就去餐区说“请到餐区开会”。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_026",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_027",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_028",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_029",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_030",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_031",
+      "task_id": "task_009",
+      "payload": {
+        "Task": {
+          "task_id": "task_009",
+          "instruction": "去书房查看当前视野里有没有人，以及书桌上是否有“请勿打扰”标识。只要有这个标识，就直接回客厅并结束，不播报也不去其他地方；没有标识且有人，就在书房说“会议开始了”后结束；没有标识且没人，就去厨房说“会议开始了”后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_032",
+      "task_id": "task_009",
+      "payload": {
+        "Task": {
+          "task_id": "task_009",
+          "instruction": "去书房查看当前视野里有没有人，以及书桌上是否有“请勿打扰”标识。只要有这个标识，就直接回客厅并结束，不播报也不去其他地方；没有标识且有人，就在书房说“会议开始了”后结束；没有标识且没人，就去厨房说“会议开始了”后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_033",
+      "task_id": "task_009",
+      "payload": {
+        "Task": {
+          "task_id": "task_009",
+          "instruction": "去书房查看当前视野里有没有人，以及书桌上是否有“请勿打扰”标识。只要有这个标识，就直接回客厅并结束，不播报也不去其他地方；没有标识且有人，就在书房说“会议开始了”后结束；没有标识且没人，就去厨房说“会议开始了”后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_034",
+      "task_id": "task_009",
+      "payload": {
+        "Task": {
+          "task_id": "task_009",
+          "instruction": "去书房查看当前视野里有没有人，以及书桌上是否有“请勿打扰”标识。只要有这个标识，就直接回客厅并结束，不播报也不去其他地方；没有标识且有人，就在书房说“会议开始了”后结束；没有标识且没人，就去厨房说“会议开始了”后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_035",
+      "task_id": "task_010",
+      "payload": {
+        "Task": {
+          "task_id": "task_010",
+          "instruction": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              }
+            ],
+            "return_location_id": null,
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_036",
+      "task_id": "task_010",
+      "payload": {
+        "Task": {
+          "task_id": "task_010",
+          "instruction": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              }
+            ],
+            "return_location_id": null,
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_037",
+      "task_id": "task_003",
+      "payload": {
+        "Task": {
+          "task_id": "task_003",
+          "instruction": "去书房先看看有没有人。没有人就回客厅说明并结束；有人时，再看看书桌上有没有杯子。有杯子就在书房说“记得喝水”并结束；没有杯子就去厨房看看操作台上有没有杯子，在厨房把观察结果告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_038",
+      "task_id": "task_003",
+      "payload": {
+        "Task": {
+          "task_id": "task_003",
+          "instruction": "去书房先看看有没有人。没有人就回客厅说明并结束；有人时，再看看书桌上有没有杯子。有杯子就在书房说“记得喝水”并结束；没有杯子就去厨房看看操作台上有没有杯子，在厨房把观察结果告诉我，然后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_039",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_040",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_041",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_042",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_043",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_044",
+      "task_id": "task_008",
+      "payload": {
+        "Task": {
+          "task_id": "task_008",
+          "instruction": "先去餐区，再去下方阳台，分别数一下当前视野里的人数。到人数较多的一处说“请到客厅集合”；两处人数一样且不为零，就问我去哪一处播报，等我回答后再播报；如果两处都没看到人，就回客厅告诉我。完成对应播报后结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "餐区",
+                "location_id": "dining_area_top_center"
+              },
+              {
+                "mention": "客厅",
+                "location_id": "living_room_bottom_center"
+              },
+              {
+                "mention": "下方阳台",
+                "location_id": "balcony_bottom"
+              }
+            ],
+            "return_location_id": "living_room_bottom_center",
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_045",
+      "task_id": "task_010",
+      "payload": {
+        "Task": {
+          "task_id": "task_010",
+          "instruction": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              }
+            ],
+            "return_location_id": null,
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_046",
+      "task_id": "task_010",
+      "payload": {
+        "Task": {
+          "task_id": "task_010",
+          "instruction": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              }
+            ],
+            "return_location_id": null,
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_047",
+      "task_id": "task_010",
+      "payload": {
+        "Task": {
+          "task_id": "task_010",
+          "instruction": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              }
+            ],
+            "return_location_id": null,
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    },
+    {
+      "test_id": "episode_048",
+      "task_id": "task_010",
+      "payload": {
+        "Task": {
+          "task_id": "task_010",
+          "instruction": "去书房看看书桌上有哪些可见物品，把结果告诉我，然后问我是否还需要查看厨房操作台。我说需要，就去厨房观察操作台上的可见物品并告诉我，然后结束；我说不用，就直接结束。",
+          "resolved_entities": {
+            "locations": [
+              {
+                "mention": "书房",
+                "location_id": "study_top_right"
+              },
+              {
+                "mention": "厨房",
+                "location_id": "kitchen_left_upper"
+              }
+            ],
+            "return_location_id": null,
+            "follow_target_ref": null
+          },
+          "mode": "NEW",
+          "constraints": [],
+          "completion_description": null
+        },
+        "Robot_State": {
+          "current_location_id": "living_room_bottom_center",
+          "motion_status": "stopped"
+        },
+        "Execution_Feedback": null,
+        "protocol_version": "kaxinguo_feasibility_v1"
+      }
+    }
+  ],
+  "dataset_role": "FROZEN_FEASIBILITY_DEVELOPMENT_REGRESSION",
+  "change_note": "固定10目标48情境；单字段观察；共同ASK窗口渠道；C10先独立SAY汇报再ASK；参考轨迹统一CALL/ASK/FINISH。",
+  "source_files_sha256": {
+    "test_inputs_source.json": "bbe13049ff039ca862dcd71b74e212a93cb9d6dc11add1aa8effe478c5e14b41",
+    "validation_data_source.json": "d8bacb9cf6b535cddca5f7aed771db40f3639ff9e48510a362bd13f7824c640b"
+  },
+  "protocol_version": "kaxinguo_feasibility_v1",
+  "previous_revision_sha256": "2660a0616c200eb3a577c3c52dbeeaa53b34a55c0bc45d29aafdcc1e6299749e"
+}

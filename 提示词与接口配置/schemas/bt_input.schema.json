@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kaxinguo_feasibility_v1:bt_input",
+  "type": "object",
+  "properties": {
+    "protocol_version": {
+      "const": "kaxinguo_feasibility_v1"
+    },
+    "Task": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "pattern": "^task_[A-Za-z0-9_]+$"
+        },
+        "mode": {
+          "const": "NEW"
+        },
+        "instruction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolved_entities": {
+          "$ref": "#/$defs/resolved_entities"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "completion_description": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "task_id",
+        "mode",
+        "instruction",
+        "resolved_entities",
+        "constraints",
+        "completion_description"
+      ],
+      "additionalProperties": false
+    },
+    "Robot_State": {
+      "$ref": "#/$defs/robot_state"
+    },
+    "Execution_Feedback": {
+      "type": "null"
+    }
+  },
+  "required": [
+    "protocol_version",
+    "Task",
+    "Robot_State",
+    "Execution_Feedback"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "resolved_entities": {
+      "type": "object",
+      "properties": {
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "mention": {
+                "type": "string",
+                "minLength": 1
+              },
+              "location_id": {
+                "type": "string",
+                "enum": [
+                  "bedroom_top_left",
+                  "bedroom_top_center",
+                  "study_top_right",
+                  "kitchen_left_upper",
+                  "balcony_left",
+                  "bathroom_left_middle_upper",
+                  "bathroom_left_middle_lower",
+                  "bedroom_bottom_left",
+                  "dining_area_top_center",
+                  "central_hall_center",
+                  "living_room_bottom_center",
+                  "balcony_bottom",
+                  "home_entry_right"
+                ]
+              }
+            },
+            "required": [
+              "mention",
+              "location_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "return_location_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "bedroom_top_left",
+                "bedroom_top_center",
+                "study_top_right",
+                "kitchen_left_upper",
+                "balcony_left",
+                "bathroom_left_middle_upper",
+                "bathroom_left_middle_lower",
+                "bedroom_bottom_left",
+                "dining_area_top_center",
+                "central_hall_center",
+                "living_room_bottom_center",
+                "balcony_bottom",
+                "home_entry_right"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "follow_target_ref": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "locations",
+        "return_location_id",
+        "follow_target_ref"
+      ],
+      "additionalProperties": false
+    },
+    "robot_state": {
+      "type": "object",
+      "properties": {
+        "current_location_id": {
+          "type": "string",
+          "enum": [
+            "bedroom_top_left",
+            "bedroom_top_center",
+            "study_top_right",
+            "kitchen_left_upper",
+            "balcony_left",
+            "bathroom_left_middle_upper",
+            "bathroom_left_middle_lower",
+            "bedroom_bottom_left",
+            "dining_area_top_center",
+            "central_hall_center",
+            "living_room_bottom_center",
+            "balcony_bottom",
+            "home_entry_right"
+          ]
+        },
+        "motion_status": {
+          "const": "stopped"
+        }
+      },
+      "required": [
+        "current_location_id",
+        "motion_status"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

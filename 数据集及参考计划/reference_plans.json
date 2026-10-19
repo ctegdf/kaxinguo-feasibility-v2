@@ -1,0 +1,2740 @@
+{
+  "data_visibility": "EVALUATOR_ONLY",
+  "source": "HAND_AUTHORED_PUBLIC_GOAL_PROTOCOL_FIXTURES_NOT_MODEL_OUTPUT",
+  "plans": [
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_001",
+      "behavior_tree": {
+        "task_name": "task_001 人工协议校验计划",
+        "root_id": "n13",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "bedroom_top_left"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_bedroom_top_left_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "请到餐区吃饭"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n5",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n6",
+            "type": "SEQUENCE",
+            "children": [
+              "n5",
+              "n3",
+              "n4"
+            ]
+          },
+          {
+            "id": "n7",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n9",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n10",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n11",
+            "type": "SEQUENCE",
+            "children": [
+              "n10",
+              "n7",
+              "n8",
+              "n9"
+            ]
+          },
+          {
+            "id": "n12",
+            "type": "SELECTOR",
+            "children": [
+              "n6",
+              "n11"
+            ]
+          },
+          {
+            "id": "n13",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n12"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_002",
+      "behavior_tree": {
+        "task_name": "task_002 人工协议校验计划",
+        "root_id": "n34",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_kitchen_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "balcony_left"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_balcony_left_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "concat": [
+                  {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  },
+                  {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  },
+                  {
+                    "ref": {
+                      "node_id": "n6",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "n9",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n10",
+            "type": "SEQUENCE",
+            "children": [
+              "n7",
+              "n8",
+              "n9"
+            ]
+          },
+          {
+            "id": "n11",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n12",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n13",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n6",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n14",
+            "type": "SEQUENCE",
+            "children": [
+              "n13",
+              "n11",
+              "n12"
+            ]
+          },
+          {
+            "id": "n15",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n6",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n16",
+            "type": "SEQUENCE",
+            "children": [
+              "n15",
+              "n10"
+            ]
+          },
+          {
+            "id": "n17",
+            "type": "SELECTOR",
+            "children": [
+              "n14",
+              "n16"
+            ]
+          },
+          {
+            "id": "n18",
+            "type": "SEQUENCE",
+            "children": [
+              "n5",
+              "n6",
+              "n17"
+            ]
+          },
+          {
+            "id": "n19",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n20",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n21",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n4",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n22",
+            "type": "SEQUENCE",
+            "children": [
+              "n21",
+              "n19",
+              "n20"
+            ]
+          },
+          {
+            "id": "n23",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n4",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n24",
+            "type": "SEQUENCE",
+            "children": [
+              "n23",
+              "n18"
+            ]
+          },
+          {
+            "id": "n25",
+            "type": "SELECTOR",
+            "children": [
+              "n22",
+              "n24"
+            ]
+          },
+          {
+            "id": "n26",
+            "type": "SEQUENCE",
+            "children": [
+              "n3",
+              "n4",
+              "n25"
+            ]
+          },
+          {
+            "id": "n27",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n28",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n29",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n30",
+            "type": "SEQUENCE",
+            "children": [
+              "n29",
+              "n27",
+              "n28"
+            ]
+          },
+          {
+            "id": "n31",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n32",
+            "type": "SEQUENCE",
+            "children": [
+              "n31",
+              "n26"
+            ]
+          },
+          {
+            "id": "n33",
+            "type": "SELECTOR",
+            "children": [
+              "n30",
+              "n32"
+            ]
+          },
+          {
+            "id": "n34",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n33"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_003",
+      "behavior_tree": {
+        "task_name": "task_003 人工协议校验计划",
+        "root_id": "n24",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "cup_visible"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_kitchen_work_area",
+              "field": "cup_visible"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "记得喝水"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n8",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n3",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": true
+            }
+          },
+          {
+            "id": "n9",
+            "type": "SEQUENCE",
+            "children": [
+              "n8",
+              "n6",
+              "n7"
+            ]
+          },
+          {
+            "id": "n10",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n11",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n12",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n3",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": false
+            }
+          },
+          {
+            "id": "n13",
+            "type": "SEQUENCE",
+            "children": [
+              "n12",
+              "n4",
+              "n5",
+              "n10",
+              "n11"
+            ]
+          },
+          {
+            "id": "n14",
+            "type": "SELECTOR",
+            "children": [
+              "n9",
+              "n13"
+            ]
+          },
+          {
+            "id": "n15",
+            "type": "SEQUENCE",
+            "children": [
+              "n3",
+              "n14"
+            ]
+          },
+          {
+            "id": "n16",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n17",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n18",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n19",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n20",
+            "type": "SEQUENCE",
+            "children": [
+              "n19",
+              "n16",
+              "n17",
+              "n18"
+            ]
+          },
+          {
+            "id": "n21",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n22",
+            "type": "SEQUENCE",
+            "children": [
+              "n21",
+              "n15"
+            ]
+          },
+          {
+            "id": "n23",
+            "type": "SELECTOR",
+            "children": [
+              "n20",
+              "n22"
+            ]
+          },
+          {
+            "id": "n24",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n23"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_004",
+      "behavior_tree": {
+        "task_name": "task_004 人工协议校验计划",
+        "root_id": "n15",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "dining_area_top_center"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_dining_area_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_dining_area_overview",
+              "field": "tableware_visible"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "bedroom_top_left"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "可以来餐区吃饭了"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n7",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                },
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n3",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": true
+                }
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "SEQUENCE",
+            "children": [
+              "n7",
+              "n4",
+              "n5",
+              "n6"
+            ]
+          },
+          {
+            "id": "n9",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "concat": [
+                  {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  },
+                  {
+                    "ref": {
+                      "node_id": "n3",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "n11",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n12",
+            "type": "CONDITION",
+            "condition": {
+              "op": "NOT",
+              "condition": {
+                "op": "AND",
+                "conditions": [
+                  {
+                    "op": "GT",
+                    "left": {
+                      "ref": {
+                        "node_id": "n2",
+                        "path": [
+                          "data",
+                          "value"
+                        ]
+                      }
+                    },
+                    "right": 0
+                  },
+                  {
+                    "op": "EQ",
+                    "left": {
+                      "ref": {
+                        "node_id": "n3",
+                        "path": [
+                          "data",
+                          "value"
+                        ]
+                      }
+                    },
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "n13",
+            "type": "SEQUENCE",
+            "children": [
+              "n12",
+              "n9",
+              "n10",
+              "n11"
+            ]
+          },
+          {
+            "id": "n14",
+            "type": "SELECTOR",
+            "children": [
+              "n8",
+              "n13"
+            ]
+          },
+          {
+            "id": "n15",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n3",
+              "n14"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_005",
+      "behavior_tree": {
+        "task_name": "task_005 人工协议校验计划",
+        "root_id": "n20",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ASK",
+            "question": "你希望我跟随谁？",
+            "reply_spec": {
+              "kind": "TARGET_REF"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n6",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n7",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 0
+            }
+          },
+          {
+            "id": "n8",
+            "type": "SEQUENCE",
+            "children": [
+              "n7",
+              "n4",
+              "n5",
+              "n6"
+            ]
+          },
+          {
+            "id": "n9",
+            "type": "ACTION",
+            "skill": "FOLLOW",
+            "args": {
+              "target_ref": "书房里唯一的人",
+              "until_location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "已经跟随到客厅了"
+            }
+          },
+          {
+            "id": "n11",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n12",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 1
+            }
+          },
+          {
+            "id": "n13",
+            "type": "SEQUENCE",
+            "children": [
+              "n12",
+              "n9",
+              "n10",
+              "n11"
+            ]
+          },
+          {
+            "id": "n14",
+            "type": "ACTION",
+            "skill": "FOLLOW",
+            "args": {
+              "target_ref": {
+                "ref": {
+                  "node_id": "n3",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "until_location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n15",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "已经跟随到客厅了"
+            }
+          },
+          {
+            "id": "n16",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n17",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": 1
+            }
+          },
+          {
+            "id": "n18",
+            "type": "SEQUENCE",
+            "children": [
+              "n17",
+              "n3",
+              "n14",
+              "n15",
+              "n16"
+            ]
+          },
+          {
+            "id": "n19",
+            "type": "SELECTOR",
+            "children": [
+              "n8",
+              "n13",
+              "n18"
+            ]
+          },
+          {
+            "id": "n20",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n19"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_006",
+      "behavior_tree": {
+        "task_name": "task_006 人工协议校验计划",
+        "root_id": "n34",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_kitchen_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ASK",
+            "question": "你希望我在哪一处播报？",
+            "reply_spec": {
+              "kind": "LOCATION",
+              "allowed_location_ids": [
+                "kitchen_left_upper",
+                "study_top_right"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n7",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n9",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "SEQUENCE",
+            "children": [
+              "n9",
+              "n6",
+              "n7",
+              "n8"
+            ]
+          },
+          {
+            "id": "n11",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n12",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n13",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "study_top_right"
+            }
+          },
+          {
+            "id": "n14",
+            "type": "SEQUENCE",
+            "children": [
+              "n13",
+              "n11",
+              "n12"
+            ]
+          },
+          {
+            "id": "n15",
+            "type": "SELECTOR",
+            "children": [
+              "n10",
+              "n14"
+            ]
+          },
+          {
+            "id": "n16",
+            "type": "SEQUENCE",
+            "children": [
+              "n5",
+              "n15"
+            ]
+          },
+          {
+            "id": "n17",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n18",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n19",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n20",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                },
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n21",
+            "type": "SEQUENCE",
+            "children": [
+              "n20",
+              "n17",
+              "n18",
+              "n19"
+            ]
+          },
+          {
+            "id": "n22",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n23",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n24",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                },
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n25",
+            "type": "SEQUENCE",
+            "children": [
+              "n24",
+              "n22",
+              "n23"
+            ]
+          },
+          {
+            "id": "n26",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                },
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n27",
+            "type": "SEQUENCE",
+            "children": [
+              "n26",
+              "n16"
+            ]
+          },
+          {
+            "id": "n28",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n29",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "concat": [
+                  {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  },
+                  {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "n30",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n31",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                },
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n32",
+            "type": "SEQUENCE",
+            "children": [
+              "n31",
+              "n28",
+              "n29",
+              "n30"
+            ]
+          },
+          {
+            "id": "n33",
+            "type": "SELECTOR",
+            "children": [
+              "n21",
+              "n25",
+              "n27",
+              "n32"
+            ]
+          },
+          {
+            "id": "n34",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n3",
+              "n4",
+              "n33"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_007",
+      "behavior_tree": {
+        "task_name": "task_007 人工协议校验计划",
+        "root_id": "n22",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_kitchen_work_area",
+              "field": "notice_text"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n6",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "会议开始"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "SEQUENCE",
+            "children": [
+              "n6",
+              "n3",
+              "n4",
+              "n5"
+            ]
+          },
+          {
+            "id": "n8",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n9",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议取消了"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n11",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "会议取消"
+            }
+          },
+          {
+            "id": "n12",
+            "type": "SEQUENCE",
+            "children": [
+              "n11",
+              "n8",
+              "n9",
+              "n10"
+            ]
+          },
+          {
+            "id": "n13",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "dining_area_top_center"
+            }
+          },
+          {
+            "id": "n14",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "请到餐区开会"
+            }
+          },
+          {
+            "id": "n15",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n16",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "改在餐区"
+            }
+          },
+          {
+            "id": "n17",
+            "type": "SEQUENCE",
+            "children": [
+              "n16",
+              "n13",
+              "n14",
+              "n15"
+            ]
+          },
+          {
+            "id": "n18",
+            "type": "END",
+            "outcome": "unresolved",
+            "message": "当前结果没有对应的用户处理要求。"
+          },
+          {
+            "id": "n19",
+            "type": "CONDITION",
+            "condition": {
+              "op": "NOT",
+              "condition": {
+                "op": "OR",
+                "conditions": [
+                  {
+                    "op": "EQ",
+                    "left": {
+                      "ref": {
+                        "node_id": "n2",
+                        "path": [
+                          "data",
+                          "value"
+                        ]
+                      }
+                    },
+                    "right": "会议开始"
+                  },
+                  {
+                    "op": "EQ",
+                    "left": {
+                      "ref": {
+                        "node_id": "n2",
+                        "path": [
+                          "data",
+                          "value"
+                        ]
+                      }
+                    },
+                    "right": "会议取消"
+                  },
+                  {
+                    "op": "EQ",
+                    "left": {
+                      "ref": {
+                        "node_id": "n2",
+                        "path": [
+                          "data",
+                          "value"
+                        ]
+                      }
+                    },
+                    "right": "改在餐区"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "n20",
+            "type": "SEQUENCE",
+            "children": [
+              "n19",
+              "n18"
+            ]
+          },
+          {
+            "id": "n21",
+            "type": "SELECTOR",
+            "children": [
+              "n7",
+              "n12",
+              "n17",
+              "n20"
+            ]
+          },
+          {
+            "id": "n22",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n21"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_008",
+      "behavior_tree": {
+        "task_name": "task_008 人工协议校验计划",
+        "root_id": "n34",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "dining_area_top_center"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_dining_area_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "balcony_bottom"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_balcony_bottom_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ASK",
+            "question": "你希望我在哪一处播报？",
+            "reply_spec": {
+              "kind": "LOCATION",
+              "allowed_location_ids": [
+                "dining_area_top_center",
+                "balcony_bottom"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n7",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "请到客厅集合"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n9",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "dining_area_top_center"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "SEQUENCE",
+            "children": [
+              "n9",
+              "n6",
+              "n7",
+              "n8"
+            ]
+          },
+          {
+            "id": "n11",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "请到客厅集合"
+            }
+          },
+          {
+            "id": "n12",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n13",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n5",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "balcony_bottom"
+            }
+          },
+          {
+            "id": "n14",
+            "type": "SEQUENCE",
+            "children": [
+              "n13",
+              "n11",
+              "n12"
+            ]
+          },
+          {
+            "id": "n15",
+            "type": "SELECTOR",
+            "children": [
+              "n10",
+              "n14"
+            ]
+          },
+          {
+            "id": "n16",
+            "type": "SEQUENCE",
+            "children": [
+              "n5",
+              "n15"
+            ]
+          },
+          {
+            "id": "n17",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "dining_area_top_center"
+            }
+          },
+          {
+            "id": "n18",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "请到客厅集合"
+            }
+          },
+          {
+            "id": "n19",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n20",
+            "type": "CONDITION",
+            "condition": {
+              "op": "GT",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": {
+                "ref": {
+                  "node_id": "n4",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n21",
+            "type": "SEQUENCE",
+            "children": [
+              "n20",
+              "n17",
+              "n18",
+              "n19"
+            ]
+          },
+          {
+            "id": "n22",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "请到客厅集合"
+            }
+          },
+          {
+            "id": "n23",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n24",
+            "type": "CONDITION",
+            "condition": {
+              "op": "LT",
+              "left": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": {
+                "ref": {
+                  "node_id": "n4",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n25",
+            "type": "SEQUENCE",
+            "children": [
+              "n24",
+              "n22",
+              "n23"
+            ]
+          },
+          {
+            "id": "n26",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n27",
+            "type": "SEQUENCE",
+            "children": [
+              "n26",
+              "n16"
+            ]
+          },
+          {
+            "id": "n28",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n29",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "concat": [
+                  {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  },
+                  {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "summary"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "n30",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n31",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                },
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n4",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n32",
+            "type": "SEQUENCE",
+            "children": [
+              "n31",
+              "n28",
+              "n29",
+              "n30"
+            ]
+          },
+          {
+            "id": "n33",
+            "type": "SELECTOR",
+            "children": [
+              "n21",
+              "n25",
+              "n27",
+              "n32"
+            ]
+          },
+          {
+            "id": "n34",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n3",
+              "n4",
+              "n33"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_009",
+      "behavior_tree": {
+        "task_name": "task_009 人工协议校验计划",
+        "root_id": "n18",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "people_count"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "quiet_sign_visible"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "living_room_bottom_center"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n6",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n3",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": true
+            }
+          },
+          {
+            "id": "n7",
+            "type": "SEQUENCE",
+            "children": [
+              "n6",
+              "n4",
+              "n5"
+            ]
+          },
+          {
+            "id": "n8",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n9",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n10",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n3",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": false
+                },
+                {
+                  "op": "GT",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n11",
+            "type": "SEQUENCE",
+            "children": [
+              "n10",
+              "n8",
+              "n9"
+            ]
+          },
+          {
+            "id": "n12",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n13",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": "会议开始了"
+            }
+          },
+          {
+            "id": "n14",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n15",
+            "type": "CONDITION",
+            "condition": {
+              "op": "AND",
+              "conditions": [
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n3",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": false
+                },
+                {
+                  "op": "EQ",
+                  "left": {
+                    "ref": {
+                      "node_id": "n2",
+                      "path": [
+                        "data",
+                        "value"
+                      ]
+                    }
+                  },
+                  "right": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "n16",
+            "type": "SEQUENCE",
+            "children": [
+              "n15",
+              "n12",
+              "n13",
+              "n14"
+            ]
+          },
+          {
+            "id": "n17",
+            "type": "SELECTOR",
+            "children": [
+              "n7",
+              "n11",
+              "n16"
+            ]
+          },
+          {
+            "id": "n18",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n3",
+              "n17"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol_version": "kaxinguo_feasibility_v1",
+      "decision": "PLAN",
+      "task_id": "task_010",
+      "behavior_tree": {
+        "task_name": "task_010 人工协议校验计划",
+        "root_id": "n15",
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "study_top_right"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_study_top_right_overview",
+              "field": "visible_items"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "ref": {
+                  "node_id": "n2",
+                  "path": [
+                    "data",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ASK",
+            "question": "还需要我查看厨房操作台吗？",
+            "reply_spec": {
+              "kind": "CONTINUE_OR_STOP"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ACTION",
+            "skill": "MOVE_TO",
+            "args": {
+              "location_id": "kitchen_left_upper"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ACTION",
+            "skill": "OBSERVE",
+            "args": {
+              "view_id": "view_kitchen_work_area",
+              "field": "visible_items"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "ACTION",
+            "skill": "SAY",
+            "args": {
+              "text": {
+                "ref": {
+                  "node_id": "n6",
+                  "path": [
+                    "data",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "n8",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n9",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n4",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "CONTINUE"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "SEQUENCE",
+            "children": [
+              "n9",
+              "n5",
+              "n6",
+              "n7",
+              "n8"
+            ]
+          },
+          {
+            "id": "n11",
+            "type": "END",
+            "outcome": "completed",
+            "message": "已完成当前任务分支。"
+          },
+          {
+            "id": "n12",
+            "type": "CONDITION",
+            "condition": {
+              "op": "EQ",
+              "left": {
+                "ref": {
+                  "node_id": "n4",
+                  "path": [
+                    "data",
+                    "value"
+                  ]
+                }
+              },
+              "right": "STOP"
+            }
+          },
+          {
+            "id": "n13",
+            "type": "SEQUENCE",
+            "children": [
+              "n12",
+              "n11"
+            ]
+          },
+          {
+            "id": "n14",
+            "type": "SELECTOR",
+            "children": [
+              "n10",
+              "n13"
+            ]
+          },
+          {
+            "id": "n15",
+            "type": "SEQUENCE",
+            "children": [
+              "n1",
+              "n2",
+              "n3",
+              "n4",
+              "n14"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

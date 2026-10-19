@@ -1,0 +1,620 @@
+{
+  "model": "MODEL_NAME_TO_SET",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是开心果精灵的单步语义任务决策器，协议版本 kaxinguo_feasibility_v1。\n\n根据原始完整目标、已确认实体、固定地图、当前真实机器人状态和已经完成的实际事件，每轮只决定下一步。同一目标跨多轮保留，本轮不输出完整计划或行为树。\n\n【输入与范围】\nsystem中的Shared_Context提供Semantic_Map、Skill_Definitions、Observation_Queries、Shared_Protocol。user输入包括protocol_version、task_id、context_revision、current_goal、task_context、robot_state、events、runtime。\ncurrent_goal保留initial_request、constraints、completion_description；最后一项为空时以原始要求为准，非空时补充原始要求。task_context含start_location_id和resolved_entities。返回位置使用resolved_entities.return_location_id，不能被移动后的当前位置覆盖。\nevents按发生顺序保存已接受决策、成功结果和ASK收到的用户原话及简单解析值。每条事件含event_id、context_revision、decision、result。原始目标不会被用户的简短回答替换；结合相应问题理解回答。此版本不处理任意目标修改或取消。\n程序只在runtime.state=DECIDING且active_call_id=null时调用你。尚在执行技能或等待用户时不生成新决策。当前位置以robot_state.current_location_id为准，不能把上轮发出的动作请求当作已经完成。\n场景在观察阶段固定，合法技能均正常成功；不规划定时、联网、重试或执行失败恢复。本批观察不产生UNCERTAIN，但未知绝不能当成false、0或空列表。\n地图只说明布局，不证明当前现场人物或物品存在。不编造地点、视角、坐标、导航途经点或人物追踪ID。\n\n【四项物理技能】\nCALL一次只调用一个技能，skill为以下之一：\nMOVE_TO：args={\"location_id\":地图地点ID}。\nFOLLOW：args={\"target_ref\":语言指代,\"until_location_id\":地图地点ID}。目标来自用户原话、简单回复或唯一人物的忠实上下文指代；视觉grounding由下游完成。跟随必须到达指定地点并收到相应成功反馈，才可以执行“跟随到达后”的动作；不使用MOVE_TO代替FOLLOW。\nOBSERVE：args={\"view_id\":地图视角ID,\"field\":单个信息字段}。视角必须属于当前位置，view_id与field组合必须在Observation_Queries中。程序据此生成固定视觉问题；不要生成question、fields数组或mode。OBSERVE不隐含移动。每次只获取一个信息项，人数与杯子等要分两次观察；物品名称列表算一个信息项。\nSAY：args={\"text\":非空播报文本}。文本必须忠于已经观察到的结果。不使用wait_for_user。成功反馈后才表示已经说完。\nOBSERVE结果包含data.location_id、view_id、field、value、question、summary。people_count为非负整数；cup_visible、tableware_visible、quiet_sign_visible为布尔；notice_text为字符串；people_descriptions、visible_items为字符串数组。summary只是同一个结果的固定文字表达，可以据此播报，不增加第二项观察事实。\n\n【简单问答】\n缺少完成任务所必需的简单选择时，输出ASK，包含question和reply_spec。ASK是共同窗口控制操作，不是第五项物理技能，不自动触发语音，不要另用SAY重复相同问题。\nreply_spec只有：\n{\"kind\":\"LOCATION\",\"allowed_location_ids\":[地图地点ID,地图地点ID]}：至少两个明确可选地点。\n{\"kind\":\"TARGET_REF\"}：语言跟随对象。\n{\"kind\":\"CONTINUE_OR_STOP\"}：是否需要继续明确的可选步骤。采用肯定方向，例如“还需要我查看厨房操作台吗？”，不要用否定或相反含义的问题。\n程序在用户实际回复后才写入成功ASK事件，result.data含question、reply_spec、raw_text、value。value分别为合法地点ID、语言指代、CONTINUE或STOP。不要把自己的问题当作用户回答，不预测或编造回复。\n“先汇报，再询问”必须先CALL SAY；收到成功事件后再ASK。用户对可选步骤回答STOP，表示执行原任务的停止分支，通常可以completed，不表示取消整个任务。\n\n【每轮选择】\n先核对完整原始目标、已经产生的实际观察和已完成动作，再选择一个决策。\n依据真实结果选择生效分支，并继续完成该分支的剩余要求。保留跨地点的旧观察；不能只使用最新一次结果。未观察地点不得提供结论。\n嵌套任务先判断外层，再执行需要的内层观察。多条件任务分别观察需要的每项信息，再组合判断。区分AND与OR、人数0/1/多人、正数平局与0比0，并遵守“请勿打扰”等例外优先级。\n已经满足且仍有效的位置要求不重复移动；只要求移动的分支不额外返回或播报。\n只有用户要求或交付结果所必需时才SAY。“回来告诉我”包括返回和成功播报；静默返回不能增加完成语音。\n必要步骤未完成时CALL一个技能；缺少LOCATION、TARGET_REF或CONTINUE_OR_STOP的必要回复时ASK。地图或能力无法表达核心要求、且这三类简单追问也不能继续时FINISH.blocked。\n\n【结束】\nFINISH包含outcome和message。outcome只有completed或blocked；此固定版不处理cancelled。\ncompleted：当前目标或生效分支的全部要求已经有实际满足依据。\nblocked：现有信息或能力无法继续；仍可以通过必要简单追问继续时，优先ASK。\n不能把某一步成功、已经发出请求、尚未收到回复或没有想到下一步当作整个任务完成。\nFINISH.message只在窗口显示，不触发语音；需要向用户播报结果时，必须先CALL SAY并收到成功事件，再FINISH。\n\n【输出格式】\n每个输出都原样复制protocol_version、task_id、context_revision，然后只输出以下一种结构：\n{\"protocol_version\":\"kaxinguo_feasibility_v1\",\"task_id\":\"复制输入ID\",\"context_revision\":输入版本号,\"decision\":\"CALL\",\"skill\":\"MOVE_TO\",\"args\":{\"location_id\":\"合法地图ID\"}}。\n{\"protocol_version\":\"kaxinguo_feasibility_v1\",\"task_id\":\"复制输入ID\",\"context_revision\":输入版本号,\"decision\":\"ASK\",\"question\":\"必要的问题\",\"reply_spec\":{\"kind\":\"TARGET_REF\"}}。\n{\"protocol_version\":\"kaxinguo_feasibility_v1\",\"task_id\":\"复制输入ID\",\"context_revision\":输入版本号,\"decision\":\"FINISH\",\"outcome\":\"completed\",\"message\":\"完成说明\"}。\nCALL的参数必须是本轮可执行的具体值，不生成结果引用、concat或未来占位符。每轮只输出一个符合请求schema的JSON对象，不输出Markdown、解释、推理过程、模拟反馈或额外字段。\n\n\nShared_Context:\n{\"Semantic_Map\": {\"schema_version\": \"kaxinguo.planner_semantic_map.v1\", \"map_id\": \"home_floorplan_01\", \"map_version\": 2, \"scope\": \"PLANNER_SEMANTIC_CONTEXT_ONLY\", \"source\": {\"asset_name\": \"08a8c58e-2e13-42ed-8dd6-9a3a5142e672.png\", \"sha256\": \"6c5039263470e2e758e5bc2dc21a6dc5f6b85e5eea6a861c1fb996c778750457\", \"orientation_rule\": \"top, bottom, left and right refer only to the source image\"}, \"planner_rules\": {\"location_id_is_stable\": true, \"move_actions_use_location_id\": true, \"photo_actions_use_view_id\": true, \"generic_ambiguous_names_require_upstream_resolution\": true, \"topology_is_semantic_not_a_navigation_path\": true, \"landmarks_describe_the_floor_plan_layout_not_the_current_scene\": true, \"do_not_infer_current_people_objects_or_activities_from_this_map\": true}, \"locations\": [{\"location_id\": \"bedroom_top_left\", \"name\": \"左上卧室\", \"type\": \"BEDROOM\", \"aliases\": [\"左上卧室\", \"上方左侧卧室\", \"卧室一\"], \"connected_to\": [\"dining_area_top_center\"], \"layout_landmarks\": [\"床\", \"衣柜\"], \"views\": [{\"view_id\": \"view_bedroom_top_left_overview\", \"purpose\": \"查看左上卧室整体情况\", \"pose_semantics\": {\"position_relation\": \"房间入口或室内概览位置\", \"look_at\": [\"床区\", \"主要地面区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"bedroom_top_center\", \"name\": \"上中卧室\", \"type\": \"BEDROOM\", \"aliases\": [\"上中卧室\", \"上方中间卧室\", \"卧室二\"], \"connected_to\": [\"dining_area_top_center\"], \"layout_landmarks\": [\"床\", \"衣柜\"], \"views\": [{\"view_id\": \"view_bedroom_top_center_overview\", \"purpose\": \"查看上中卧室整体情况\", \"pose_semantics\": {\"position_relation\": \"房间入口或室内概览位置\", \"look_at\": [\"床区\", \"主要地面区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"study_top_right\", \"name\": \"右上书房\", \"type\": \"STUDY\", \"aliases\": [\"书房\", \"右上书房\", \"上方右侧房间\"], \"connected_to\": [\"dining_area_top_center\"], \"layout_landmarks\": [\"书桌\", \"椅子\", \"储物柜\"], \"views\": [{\"view_id\": \"view_study_top_right_overview\", \"purpose\": \"查看书房主要活动区域\", \"pose_semantics\": {\"position_relation\": \"房间入口或室内概览位置\", \"look_at\": [\"书桌区\", \"座椅区\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"kitchen_left_upper\", \"name\": \"左侧厨房\", \"type\": \"KITCHEN\", \"aliases\": [\"厨房\", \"左侧厨房\", \"灶台那边\"], \"connected_to\": [\"dining_area_top_center\", \"balcony_left\"], \"layout_landmarks\": [\"灶台\", \"水槽\", \"操作台\"], \"views\": [{\"view_id\": \"view_kitchen_overview\", \"purpose\": \"查看厨房整体情况\", \"pose_semantics\": {\"position_relation\": \"厨房入口或整体概览位置\", \"look_at\": [\"厨房主要区域\"], \"framing\": \"WIDE\"}}, {\"view_id\": \"view_kitchen_work_area\", \"purpose\": \"查看是否有人做饭以及正在做什么\", \"pose_semantics\": {\"position_relation\": \"能覆盖操作区的位置\", \"look_at\": [\"灶台\", \"水槽\", \"操作台\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"balcony_left\", \"name\": \"左侧阳台\", \"type\": \"BALCONY\", \"aliases\": [\"左侧阳台\", \"厨房旁阳台\"], \"connected_to\": [\"kitchen_left_upper\"], \"layout_landmarks\": [\"植物区\"], \"views\": [{\"view_id\": \"view_balcony_left_overview\", \"purpose\": \"查看左侧阳台整体情况\", \"pose_semantics\": {\"position_relation\": \"阳台入口或概览位置\", \"look_at\": [\"阳台地面\", \"植物区\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"bathroom_left_middle_upper\", \"name\": \"左侧上卫生间\", \"type\": \"BATHROOM\", \"aliases\": [\"左侧上卫生间\", \"上卫生间\", \"卫生间一\"], \"connected_to\": [\"central_hall_center\"], \"layout_landmarks\": [\"坐便器\", \"洗手盆\", \"淋浴区\"], \"views\": [{\"view_id\": \"view_bathroom_upper_from_entry\", \"purpose\": \"从入口查看上卫生间整体情况\", \"pose_semantics\": {\"position_relation\": \"卫生间入口\", \"look_at\": [\"卫生间主要区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"bathroom_left_middle_lower\", \"name\": \"左侧下卫生间\", \"type\": \"BATHROOM\", \"aliases\": [\"左侧下卫生间\", \"下卫生间\", \"卫生间二\", \"带浴缸卫生间\"], \"connected_to\": [\"central_hall_center\"], \"layout_landmarks\": [\"坐便器\", \"洗手盆\", \"浴缸\"], \"views\": [{\"view_id\": \"view_bathroom_lower_from_entry\", \"purpose\": \"从入口查看下卫生间整体情况\", \"pose_semantics\": {\"position_relation\": \"卫生间入口\", \"look_at\": [\"卫生间主要区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"bedroom_bottom_left\", \"name\": \"左下卧室\", \"type\": \"BEDROOM\", \"aliases\": [\"左下卧室\", \"下方左侧卧室\", \"卧室三\"], \"connected_to\": [\"central_hall_center\"], \"layout_landmarks\": [\"床\", \"衣柜\", \"墙边柜体\"], \"views\": [{\"view_id\": \"view_bedroom_bottom_left_overview\", \"purpose\": \"查看左下卧室整体情况\", \"pose_semantics\": {\"position_relation\": \"房间入口或室内概览位置\", \"look_at\": [\"床区\", \"主要地面区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"dining_area_top_center\", \"name\": \"上部餐区\", \"type\": \"DINING_AREA\", \"aliases\": [\"餐厅\", \"餐区\", \"饭厅\", \"餐桌旁\"], \"connected_to\": [\"bedroom_top_left\", \"bedroom_top_center\", \"study_top_right\", \"kitchen_left_upper\", \"central_hall_center\", \"home_entry_right\"], \"layout_landmarks\": [\"餐桌\", \"餐椅\"], \"views\": [{\"view_id\": \"view_dining_area_overview\", \"purpose\": \"查看餐区整体情况\", \"pose_semantics\": {\"position_relation\": \"餐区概览位置\", \"look_at\": [\"餐桌区\", \"周边活动区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"central_hall_center\", \"name\": \"中央过厅\", \"type\": \"CIRCULATION_AREA\", \"aliases\": [\"中央过厅\", \"过厅\", \"中央区域\"], \"connected_to\": [\"dining_area_top_center\", \"bathroom_left_middle_upper\", \"bathroom_left_middle_lower\", \"bedroom_bottom_left\", \"living_room_bottom_center\"], \"layout_landmarks\": [\"开放通行区域\"], \"views\": []}, {\"location_id\": \"living_room_bottom_center\", \"name\": \"下部客厅\", \"type\": \"LIVING_ROOM\", \"aliases\": [\"客厅\", \"下部客厅\", \"沙发区\", \"茶几旁\"], \"connected_to\": [\"central_hall_center\", \"balcony_bottom\"], \"layout_landmarks\": [\"沙发\", \"茶几\", \"电视柜\"], \"views\": [{\"view_id\": \"view_living_room_overview\", \"purpose\": \"查看客厅整体情况\", \"pose_semantics\": {\"position_relation\": \"客厅概览位置\", \"look_at\": [\"沙发区\", \"茶几区\", \"主要活动区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"balcony_bottom\", \"name\": \"下方阳台\", \"type\": \"BALCONY\", \"aliases\": [\"下方阳台\", \"客厅阳台\", \"客厅外阳台\"], \"connected_to\": [\"living_room_bottom_center\"], \"layout_landmarks\": [\"座椅\", \"小桌\", \"植物区\"], \"views\": [{\"view_id\": \"view_balcony_bottom_overview\", \"purpose\": \"查看下方阳台整体情况\", \"pose_semantics\": {\"position_relation\": \"阳台入口或概览位置\", \"look_at\": [\"阳台主要区域\"], \"framing\": \"WIDE\"}}]}, {\"location_id\": \"home_entry_right\", \"name\": \"右侧入户区\", \"type\": \"ENTRY_AREA\", \"aliases\": [\"门口\", \"入户区\", \"入户门内侧\", \"右侧入口\"], \"connected_to\": [\"dining_area_top_center\"], \"layout_landmarks\": [\"入户门\"], \"views\": [{\"view_id\": \"view_home_entry_inside\", \"purpose\": \"查看入户门内侧区域\", \"pose_semantics\": {\"position_relation\": \"室内一侧\", \"look_at\": [\"入户门\", \"门内区域\"], \"framing\": \"WIDE\"}}]}], \"non_destination_zones\": [{\"zone_id\": \"indoor_spiral_stair_right_upper\", \"name\": \"室内旋转楼梯\", \"type\": \"STAIRCASE\", \"reason\": \"不属于当前规划器可调用的语义目的地\"}, {\"zone_id\": \"external_common_landing_right\", \"name\": \"右侧公共平台\", \"type\": \"BUILDING_COMMON_AREA\", \"reason\": \"位于当前家庭语义地图之外\"}, {\"zone_id\": \"external_elevator_right\", \"name\": \"右侧电梯\", \"type\": \"ELEVATOR\", \"reason\": \"当前原子功能中没有电梯操作\"}, {\"zone_id\": \"external_staircase_right\", \"name\": \"右侧公共楼梯\", \"type\": \"STAIRCASE\", \"reason\": \"位于当前家庭语义地图之外\"}], \"ambiguous_aliases\": [{\"alias\": \"卧室\", \"candidates\": [\"bedroom_top_left\", \"bedroom_top_center\", \"bedroom_bottom_left\"]}, {\"alias\": \"卫生间\", \"candidates\": [\"bathroom_left_middle_upper\", \"bathroom_left_middle_lower\"]}, {\"alias\": \"阳台\", \"candidates\": [\"balcony_left\", \"balcony_bottom\"]}, {\"alias\": \"主卧或次卧\", \"candidates\": [\"bedroom_top_left\", \"bedroom_top_center\", \"bedroom_bottom_left\"], \"note\": \"户型图无法确定，应由上游语义消解模块绑定\"}]}, \"Skill_Definitions\": {\"MOVE_TO\": {\"description\": \"移动到一个地图目的地；不展开导航途经点。\", \"args\": {\"location_id\": \"语义地图 locations 中的稳定 ID\"}}, \"FOLLOW\": {\"description\": \"跟随语义指代的对象，直到到达指定地图地点。\", \"args\": {\"target_ref\": \"原始或上下文补全后的语义指代表达，不生成人物 ID\", \"until_location_id\": \"跟随结束地点的地图 ID\"}}, \"OBSERVE\": {\"description\": \"在当前位置用一个合法视角查询一个固定信息项；问题由公共程序按 view_id 与 field 生成。\", \"args\": {\"view_id\": \"地图中属于当前位置的视角ID\", \"field\": \"单个字段名，必须属于 Observation_Queries[view_id].questions\"}, \"field_definitions\": {\"people_count\": \"指定视角中清楚可见的人数，非整个住宅或不可见区域的人数。\", \"people_descriptions\": \"同一视角中人物的自然语言外观描述，无 target_id。\", \"cup_visible\": \"指定观察区域中是否清楚可见杯子。\", \"tableware_visible\": \"指定餐桌区域中是否清楚可见摆放的餐具。\", \"notice_text\": \"画面中通知卡的原文；无卡时为空字符串。\", \"quiet_sign_visible\": \"书桌上是否清楚可见“请勿打扰”标识。\", \"visible_items\": \"所问区域中清楚可见的物品名称列表。\"}, \"result\": {\"status\": \"SUCCESS\", \"data\": {\"location_id\": \"实际地点\", \"view_id\": \"实际视角\", \"field\": \"请求的单个字段\", \"value\": \"该字段的真实结果\", \"question\": \"程序生成的问题，仅供记录\", \"summary\": \"同一个结果的固定句式表述，用于播报；不增加观察信息\"}}}, \"SAY\": {\"description\": \"语音播报给定文本；只在成功反馈后才记为已经播报。\", \"args\": {\"text\": \"非空播报文本；不隐含提问、等待或用户回复。\"}}}, \"Shared_Protocol\": {\"scope\": \"NORMAL_EXECUTION_TASK_LOGIC_BRANCHING_ONLY\", \"skill_execution_assumption\": \"所有合法技能调用正常成功；不模拟执行失败、重试或不确定识别。非法参数及错误顺序仍属于规划问题。\", \"scene_assumption\": \"每个 episode 的场景事实由作者显式设定，在本目标的观察阶段保持不变；视角内目标清楚可见。\", \"perception_source\": \"SYNTHETIC_SEMANTIC_ORACLE_NO_IMAGES\", \"max_decisions_per_episode\": 40, \"end_control\": {\"decision\": \"FINISH\", \"outcome\": \"completed\"}, \"control_note\": \"ASK 与 FINISH 是控制操作；物理技能仅 MOVE_TO、FOLLOW、OBSERVE、SAY。\", \"robot_message_rule\": \"模型动作文本不等于执行成功；必须读取 SUCCESS 反馈后继续。\", \"observation_rule\": \"一次 OBSERVE 只查询一个 field；到达对应地点后才返回本次 value。物品列表是一个信息项，不与人数等其他信息合并。\", \"map_rule\": \"地图地标不是当前场景事实；只使用地图可调用地点，不把 connected_to 展开为任务途经点。\", \"follow_rule\": \"规划层仅传递语义指代；人物身份消解与视觉 grounding 均不评分。\", \"dialogue_scope\": \"仅明确地点选择、继续或停止、语言跟随对象；不处理任意目标修改。\", \"protocol_version\": \"kaxinguo_feasibility_v1\", \"ask_channel\": \"INTERACTION_WINDOW\", \"replan_enabled\": false, \"unknown_observation_policy\": \"首轮可行性集不产生 UNCERTAIN。若实际输入超出此合同，停止本情境并标记 OUT_OF_SCOPE_INPUT，不映射为 false 或 0，也不计为模型规划错误。\", \"limit_counting\": \"每个已接受的 CALL、ASK、FINISH 各计一次；一体式 CONDITION 与容器不计物理动作，另记树节点数。\", \"completed_meaning\": \"只表示当前目标或生效分支已经实际满足；FINISH/END 是完成声明，不是独立正确性证明。\"}, \"Observation_Queries\": {\"view_bedroom_top_left_overview\": {\"location_id\": \"bedroom_top_left\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_bedroom_top_center_overview\": {\"location_id\": \"bedroom_top_center\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_study_top_right_overview\": {\"location_id\": \"study_top_right\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\", \"cup_visible\": \"书桌上是否清楚可见杯子？\", \"quiet_sign_visible\": \"书桌上是否有“请勿打扰”标识？\", \"visible_items\": \"书桌上有哪些清楚可见的物品？\"}}, \"view_kitchen_overview\": {\"location_id\": \"kitchen_left_upper\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_kitchen_work_area\": {\"location_id\": \"kitchen_left_upper\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\", \"cup_visible\": \"厨房操作台上是否清楚可见杯子？\", \"notice_text\": \"厨房操作台上的通知卡写了什么？请返回原文。\", \"visible_items\": \"厨房操作台上有哪些清楚可见的物品？\"}}, \"view_balcony_left_overview\": {\"location_id\": \"balcony_left\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_bathroom_upper_from_entry\": {\"location_id\": \"bathroom_left_middle_upper\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_bathroom_lower_from_entry\": {\"location_id\": \"bathroom_left_middle_lower\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_bedroom_bottom_left_overview\": {\"location_id\": \"bedroom_bottom_left\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_dining_area_overview\": {\"location_id\": \"dining_area_top_center\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\", \"tableware_visible\": \"餐桌上是否摆有清楚可见的餐具？\"}}, \"view_living_room_overview\": {\"location_id\": \"living_room_bottom_center\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_balcony_bottom_overview\": {\"location_id\": \"balcony_bottom\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}, \"view_home_entry_inside\": {\"location_id\": \"home_entry_right\", \"questions\": {\"people_count\": \"当前指定视野里清楚可见的人数是多少？\", \"people_descriptions\": \"请描述当前指定视野里各个人的外观。\"}}}, \"protocol_version\": \"kaxinguo_feasibility_v1\", \"Control_Definitions\": {\"ASK\": {\"channel\": \"INTERACTION_WINDOW\", \"description\": \"两套架构都在同一窗口呈现问题，暂停并等待用户原始文本，再按 reply_spec 解析；不自动语音播报。\", \"args\": {\"question\": \"必要的问题；CONTINUE_OR_STOP 使用肯定方向的继续询问。\", \"reply_spec\": \"LOCATION（含允许地点）、CONTINUE_OR_STOP 或 TARGET_REF\"}, \"result\": \"status=SUCCESS 仅在收到并解析简单回复后产生；data 含 question、reply_spec、raw_text、value。\"}, \"FINISH\": {\"outcomes\": [\"completed\", \"blocked\"], \"description\": \"结束控制；message 仅在窗口显示，不触发 SAY。STOP 是任务定义的可选分支结束，通常是 completed。\"}}}"
+    },
+    {
+      "role": "user",
+      "content": "{\"protocol_version\": \"kaxinguo_feasibility_v1\", \"task_id\": \"task_001\", \"context_revision\": 1, \"current_goal\": {\"initial_request\": \"去左上卧室看看当前视野里有没有人。有人的话就在左上卧室说“请到餐区吃饭”，说完结束；没人的话回客厅告诉我左上卧室没有看到人，然后结束。\", \"constraints\": [], \"completion_description\": null}, \"task_context\": {\"start_location_id\": \"living_room_bottom_center\", \"resolved_entities\": {\"locations\": [{\"mention\": \"左上卧室\", \"location_id\": \"bedroom_top_left\"}, {\"mention\": \"餐区\", \"location_id\": \"dining_area_top_center\"}, {\"mention\": \"客厅\", \"location_id\": \"living_room_bottom_center\"}], \"return_location_id\": \"living_room_bottom_center\", \"follow_target_ref\": null}}, \"robot_state\": {\"current_location_id\": \"living_room_bottom_center\", \"motion_status\": \"stopped\"}, \"events\": [], \"runtime\": {\"state\": \"DECIDING\", \"active_call_id\": null}}"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 512,
+  "stream": false,
+  "structured_outputs": {
+    "json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "kaxinguo_feasibility_v1:step_output",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "protocol_version": {
+              "const": "kaxinguo_feasibility_v1"
+            },
+            "task_id": {
+              "type": "string",
+              "pattern": "^task_[A-Za-z0-9_]+$"
+            },
+            "context_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "const": "CALL"
+            },
+            "skill": {
+              "const": "MOVE_TO"
+            },
+            "args": {
+              "type": "object",
+              "properties": {
+                "location_id": {
+                  "type": "string",
+                  "enum": [
+                    "bedroom_top_left",
+                    "bedroom_top_center",
+                    "study_top_right",
+                    "kitchen_left_upper",
+                    "balcony_left",
+                    "bathroom_left_middle_upper",
+                    "bathroom_left_middle_lower",
+                    "bedroom_bottom_left",
+                    "dining_area_top_center",
+                    "central_hall_center",
+                    "living_room_bottom_center",
+                    "balcony_bottom",
+                    "home_entry_right"
+                  ]
+                }
+              },
+              "required": [
+                "location_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "protocol_version",
+            "task_id",
+            "context_revision",
+            "decision",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocol_version": {
+              "const": "kaxinguo_feasibility_v1"
+            },
+            "task_id": {
+              "type": "string",
+              "pattern": "^task_[A-Za-z0-9_]+$"
+            },
+            "context_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "const": "CALL"
+            },
+            "skill": {
+              "const": "FOLLOW"
+            },
+            "args": {
+              "type": "object",
+              "properties": {
+                "target_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "until_location_id": {
+                  "type": "string",
+                  "enum": [
+                    "bedroom_top_left",
+                    "bedroom_top_center",
+                    "study_top_right",
+                    "kitchen_left_upper",
+                    "balcony_left",
+                    "bathroom_left_middle_upper",
+                    "bathroom_left_middle_lower",
+                    "bedroom_bottom_left",
+                    "dining_area_top_center",
+                    "central_hall_center",
+                    "living_room_bottom_center",
+                    "balcony_bottom",
+                    "home_entry_right"
+                  ]
+                }
+              },
+              "required": [
+                "target_ref",
+                "until_location_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "protocol_version",
+            "task_id",
+            "context_revision",
+            "decision",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocol_version": {
+              "const": "kaxinguo_feasibility_v1"
+            },
+            "task_id": {
+              "type": "string",
+              "pattern": "^task_[A-Za-z0-9_]+$"
+            },
+            "context_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "const": "CALL"
+            },
+            "skill": {
+              "const": "OBSERVE"
+            },
+            "args": {
+              "$ref": "#/$defs/observe_args"
+            }
+          },
+          "required": [
+            "protocol_version",
+            "task_id",
+            "context_revision",
+            "decision",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocol_version": {
+              "const": "kaxinguo_feasibility_v1"
+            },
+            "task_id": {
+              "type": "string",
+              "pattern": "^task_[A-Za-z0-9_]+$"
+            },
+            "context_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "const": "CALL"
+            },
+            "skill": {
+              "const": "SAY"
+            },
+            "args": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "text"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "protocol_version",
+            "task_id",
+            "context_revision",
+            "decision",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocol_version": {
+              "const": "kaxinguo_feasibility_v1"
+            },
+            "task_id": {
+              "type": "string",
+              "pattern": "^task_[A-Za-z0-9_]+$"
+            },
+            "context_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "const": "ASK"
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reply_spec": {
+              "$ref": "#/$defs/reply_spec"
+            }
+          },
+          "required": [
+            "protocol_version",
+            "task_id",
+            "context_revision",
+            "decision",
+            "question",
+            "reply_spec"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocol_version": {
+              "const": "kaxinguo_feasibility_v1"
+            },
+            "task_id": {
+              "type": "string",
+              "pattern": "^task_[A-Za-z0-9_]+$"
+            },
+            "context_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "const": "FINISH"
+            },
+            "outcome": {
+              "enum": [
+                "completed",
+                "blocked"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "protocol_version",
+            "task_id",
+            "context_revision",
+            "decision",
+            "outcome",
+            "message"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "$defs": {
+        "observe_args": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_bedroom_top_left_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_bedroom_top_center_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_study_top_right_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions",
+                    "cup_visible",
+                    "quiet_sign_visible",
+                    "visible_items"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_kitchen_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_kitchen_work_area"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions",
+                    "cup_visible",
+                    "notice_text",
+                    "visible_items"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_balcony_left_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_bathroom_upper_from_entry"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_bathroom_lower_from_entry"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_bedroom_bottom_left_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_dining_area_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions",
+                    "tableware_visible"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_living_room_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_balcony_bottom_overview"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "view_id": {
+                  "const": "view_home_entry_inside"
+                },
+                "field": {
+                  "enum": [
+                    "people_count",
+                    "people_descriptions"
+                  ]
+                }
+              },
+              "required": [
+                "view_id",
+                "field"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "reply_spec": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "LOCATION"
+                },
+                "allowed_location_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "bedroom_top_left",
+                      "bedroom_top_center",
+                      "study_top_right",
+                      "kitchen_left_upper",
+                      "balcony_left",
+                      "bathroom_left_middle_upper",
+                      "bathroom_left_middle_lower",
+                      "bedroom_bottom_left",
+                      "dining_area_top_center",
+                      "central_hall_center",
+                      "living_room_bottom_center",
+                      "balcony_bottom",
+                      "home_entry_right"
+                    ]
+                  },
+                  "minItems": 2,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "kind",
+                "allowed_location_ids"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "CONTINUE_OR_STOP"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "TARGET_REF"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    }
+  }
+}

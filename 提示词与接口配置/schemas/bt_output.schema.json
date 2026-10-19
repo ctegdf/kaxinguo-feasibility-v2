@@ -1,0 +1,922 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kaxinguo_feasibility_v1:bt_output",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "kaxinguo_feasibility_v1"
+        },
+        "decision": {
+          "const": "PLAN"
+        },
+        "task_id": {
+          "type": "string",
+          "pattern": "^task_[A-Za-z0-9_]+$"
+        },
+        "behavior_tree": {
+          "$ref": "#/$defs/tree"
+        }
+      },
+      "required": [
+        "protocol_version",
+        "decision",
+        "task_id",
+        "behavior_tree"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "kaxinguo_feasibility_v1"
+        },
+        "decision": {
+          "const": "NEEDS_RESOLUTION"
+        },
+        "task_id": {
+          "type": "string",
+          "pattern": "^task_[A-Za-z0-9_]+$"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "missing_information": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "protocol_version",
+        "decision",
+        "task_id",
+        "message",
+        "missing_information"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "kaxinguo_feasibility_v1"
+        },
+        "decision": {
+          "const": "UNSUPPORTED"
+        },
+        "task_id": {
+          "type": "string",
+          "pattern": "^task_[A-Za-z0-9_]+$"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "protocol_version",
+        "decision",
+        "task_id",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "node": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "enum": [
+                "SEQUENCE",
+                "SELECTOR"
+              ]
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "children"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "CONDITION"
+            },
+            "condition": {
+              "$ref": "#/$defs/predicate"
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "condition"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "ACTION"
+            },
+            "skill": {
+              "const": "MOVE_TO"
+            },
+            "args": {
+              "type": "object",
+              "properties": {
+                "location_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "bedroom_top_left",
+                        "bedroom_top_center",
+                        "study_top_right",
+                        "kitchen_left_upper",
+                        "balcony_left",
+                        "bathroom_left_middle_upper",
+                        "bathroom_left_middle_lower",
+                        "bedroom_bottom_left",
+                        "dining_area_top_center",
+                        "central_hall_center",
+                        "living_room_bottom_center",
+                        "balcony_bottom",
+                        "home_entry_right"
+                      ]
+                    },
+                    {
+                      "$ref": "#/$defs/result_ref"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "location_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "ACTION"
+            },
+            "skill": {
+              "const": "FOLLOW"
+            },
+            "args": {
+              "type": "object",
+              "properties": {
+                "target_ref": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "$ref": "#/$defs/result_ref"
+                    }
+                  ]
+                },
+                "until_location_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "bedroom_top_left",
+                        "bedroom_top_center",
+                        "study_top_right",
+                        "kitchen_left_upper",
+                        "balcony_left",
+                        "bathroom_left_middle_upper",
+                        "bathroom_left_middle_lower",
+                        "bedroom_bottom_left",
+                        "dining_area_top_center",
+                        "central_hall_center",
+                        "living_room_bottom_center",
+                        "balcony_bottom",
+                        "home_entry_right"
+                      ]
+                    },
+                    {
+                      "$ref": "#/$defs/result_ref"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "target_ref",
+                "until_location_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "ACTION"
+            },
+            "skill": {
+              "const": "OBSERVE"
+            },
+            "args": {
+              "$ref": "#/$defs/observe_args"
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "ACTION"
+            },
+            "skill": {
+              "const": "SAY"
+            },
+            "args": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "$ref": "#/$defs/text_expr"
+                }
+              },
+              "required": [
+                "text"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "skill",
+            "args"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "ASK"
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reply_spec": {
+              "$ref": "#/$defs/reply_spec"
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "question",
+            "reply_spec"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "type": {
+              "const": "END"
+            },
+            "outcome": {
+              "enum": [
+                "completed",
+                "unresolved"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "outcome",
+            "message"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "observe_args": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bedroom_top_left_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bedroom_top_center_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions",
+                "cup_visible",
+                "quiet_sign_visible",
+                "visible_items"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_kitchen_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions",
+                "cup_visible",
+                "notice_text",
+                "visible_items"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_balcony_left_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bathroom_upper_from_entry"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bathroom_lower_from_entry"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_bedroom_bottom_left_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_dining_area_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions",
+                "tableware_visible"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_living_room_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_balcony_bottom_overview"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view_id": {
+              "const": "view_home_entry_inside"
+            },
+            "field": {
+              "enum": [
+                "people_count",
+                "people_descriptions"
+              ]
+            }
+          },
+          "required": [
+            "view_id",
+            "field"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "predicate": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "enum": [
+                "EQ",
+                "GT",
+                "LT"
+              ]
+            },
+            "left": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/$defs/result_ref"
+                }
+              ]
+            },
+            "right": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/$defs/result_ref"
+                }
+              ]
+            }
+          },
+          "required": [
+            "op",
+            "left",
+            "right"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "enum": [
+                "AND",
+                "OR"
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/predicate"
+              },
+              "minItems": 2
+            }
+          },
+          "required": [
+            "op",
+            "conditions"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "const": "NOT"
+            },
+            "condition": {
+              "$ref": "#/$defs/predicate"
+            }
+          },
+          "required": [
+            "op",
+            "condition"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "reply_spec": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "LOCATION"
+            },
+            "allowed_location_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "bedroom_top_left",
+                  "bedroom_top_center",
+                  "study_top_right",
+                  "kitchen_left_upper",
+                  "balcony_left",
+                  "bathroom_left_middle_upper",
+                  "bathroom_left_middle_lower",
+                  "bedroom_bottom_left",
+                  "dining_area_top_center",
+                  "central_hall_center",
+                  "living_room_bottom_center",
+                  "balcony_bottom",
+                  "home_entry_right"
+                ]
+              },
+              "minItems": 2,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "allowed_location_ids"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CONTINUE_OR_STOP"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "TARGET_REF"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "result_ref": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "object",
+          "properties": {
+            "node_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+              "maxLength": 64
+            },
+            "path": {
+              "enum": [
+                [
+                  "data",
+                  "value"
+                ],
+                [
+                  "data",
+                  "summary"
+                ],
+                [
+                  "data",
+                  "arrived_location_id"
+                ],
+                [
+                  "data",
+                  "spoken_text"
+                ],
+                [
+                  "data",
+                  "raw_text"
+                ]
+              ]
+            }
+          },
+          "required": [
+            "node_id",
+            "path"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "text_expr": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "$ref": "#/$defs/result_ref"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "concat": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/result_ref"
+                  }
+                ]
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "concat"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "tree": {
+      "type": "object",
+      "properties": {
+        "task_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+          "maxLength": 64
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          },
+          "minItems": 2,
+          "maxItems": 256
+        }
+      },
+      "required": [
+        "task_name",
+        "root_id",
+        "nodes"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

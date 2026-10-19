@@ -1,0 +1,1472 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kaxinguo_feasibility_v1:result",
+  "type": "object",
+  "properties": {
+    "status": {
+      "const": "SUCCESS"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bedroom_top_left"
+            },
+            "view_id": {
+              "const": "view_bedroom_top_left_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bedroom_top_left"
+            },
+            "view_id": {
+              "const": "view_bedroom_top_left_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bedroom_top_center"
+            },
+            "view_id": {
+              "const": "view_bedroom_top_center_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bedroom_top_center"
+            },
+            "view_id": {
+              "const": "view_bedroom_top_center_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "study_top_right"
+            },
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "study_top_right"
+            },
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "study_top_right"
+            },
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "const": "cup_visible"
+            },
+            "question": {
+              "const": "书桌上是否清楚可见杯子？"
+            },
+            "value": {
+              "type": "boolean"
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "study_top_right"
+            },
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "const": "quiet_sign_visible"
+            },
+            "question": {
+              "const": "书桌上是否有“请勿打扰”标识？"
+            },
+            "value": {
+              "type": "boolean"
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "study_top_right"
+            },
+            "view_id": {
+              "const": "view_study_top_right_overview"
+            },
+            "field": {
+              "const": "visible_items"
+            },
+            "question": {
+              "const": "书桌上有哪些清楚可见的物品？"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "const": "cup_visible"
+            },
+            "question": {
+              "const": "厨房操作台上是否清楚可见杯子？"
+            },
+            "value": {
+              "type": "boolean"
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "const": "notice_text"
+            },
+            "question": {
+              "const": "厨房操作台上的通知卡写了什么？请返回原文。"
+            },
+            "value": {
+              "type": "string"
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "kitchen_left_upper"
+            },
+            "view_id": {
+              "const": "view_kitchen_work_area"
+            },
+            "field": {
+              "const": "visible_items"
+            },
+            "question": {
+              "const": "厨房操作台上有哪些清楚可见的物品？"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "balcony_left"
+            },
+            "view_id": {
+              "const": "view_balcony_left_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "balcony_left"
+            },
+            "view_id": {
+              "const": "view_balcony_left_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bathroom_left_middle_upper"
+            },
+            "view_id": {
+              "const": "view_bathroom_upper_from_entry"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bathroom_left_middle_upper"
+            },
+            "view_id": {
+              "const": "view_bathroom_upper_from_entry"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bathroom_left_middle_lower"
+            },
+            "view_id": {
+              "const": "view_bathroom_lower_from_entry"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bathroom_left_middle_lower"
+            },
+            "view_id": {
+              "const": "view_bathroom_lower_from_entry"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bedroom_bottom_left"
+            },
+            "view_id": {
+              "const": "view_bedroom_bottom_left_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "bedroom_bottom_left"
+            },
+            "view_id": {
+              "const": "view_bedroom_bottom_left_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "dining_area_top_center"
+            },
+            "view_id": {
+              "const": "view_dining_area_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "dining_area_top_center"
+            },
+            "view_id": {
+              "const": "view_dining_area_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "dining_area_top_center"
+            },
+            "view_id": {
+              "const": "view_dining_area_overview"
+            },
+            "field": {
+              "const": "tableware_visible"
+            },
+            "question": {
+              "const": "餐桌上是否摆有清楚可见的餐具？"
+            },
+            "value": {
+              "type": "boolean"
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "living_room_bottom_center"
+            },
+            "view_id": {
+              "const": "view_living_room_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "living_room_bottom_center"
+            },
+            "view_id": {
+              "const": "view_living_room_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "balcony_bottom"
+            },
+            "view_id": {
+              "const": "view_balcony_bottom_overview"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "balcony_bottom"
+            },
+            "view_id": {
+              "const": "view_balcony_bottom_overview"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "home_entry_right"
+            },
+            "view_id": {
+              "const": "view_home_entry_inside"
+            },
+            "field": {
+              "const": "people_count"
+            },
+            "question": {
+              "const": "当前指定视野里清楚可见的人数是多少？"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location_id": {
+              "const": "home_entry_right"
+            },
+            "view_id": {
+              "const": "view_home_entry_inside"
+            },
+            "field": {
+              "const": "people_descriptions"
+            },
+            "question": {
+              "const": "请描述当前指定视野里各个人的外观。"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "location_id",
+            "view_id",
+            "field",
+            "question",
+            "value",
+            "summary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "arrived_location_id": {
+              "type": "string",
+              "enum": [
+                "bedroom_top_left",
+                "bedroom_top_center",
+                "study_top_right",
+                "kitchen_left_upper",
+                "balcony_left",
+                "bathroom_left_middle_upper",
+                "bathroom_left_middle_lower",
+                "bedroom_bottom_left",
+                "dining_area_top_center",
+                "central_hall_center",
+                "living_room_bottom_center",
+                "balcony_bottom",
+                "home_entry_right"
+              ]
+            }
+          },
+          "required": [
+            "arrived_location_id"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "arrived_location_id": {
+              "type": "string",
+              "enum": [
+                "bedroom_top_left",
+                "bedroom_top_center",
+                "study_top_right",
+                "kitchen_left_upper",
+                "balcony_left",
+                "bathroom_left_middle_upper",
+                "bathroom_left_middle_lower",
+                "bedroom_bottom_left",
+                "dining_area_top_center",
+                "central_hall_center",
+                "living_room_bottom_center",
+                "balcony_bottom",
+                "home_entry_right"
+              ]
+            },
+            "followed_target_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "completion_reason": {
+              "const": "REACHED_UNTIL_LOCATION"
+            }
+          },
+          "required": [
+            "arrived_location_id",
+            "followed_target_ref",
+            "completion_reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "spoken_text": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "spoken_text"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "outcome": {
+              "enum": [
+                "completed",
+                "blocked"
+              ]
+            }
+          },
+          "required": [
+            "outcome"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reply_spec": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "LOCATION"
+                },
+                "allowed_location_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "bedroom_top_left",
+                      "bedroom_top_center",
+                      "study_top_right",
+                      "kitchen_left_upper",
+                      "balcony_left",
+                      "bathroom_left_middle_upper",
+                      "bathroom_left_middle_lower",
+                      "bedroom_bottom_left",
+                      "dining_area_top_center",
+                      "central_hall_center",
+                      "living_room_bottom_center",
+                      "balcony_bottom",
+                      "home_entry_right"
+                    ]
+                  },
+                  "minItems": 2,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "kind",
+                "allowed_location_ids"
+              ],
+              "additionalProperties": false
+            },
+            "raw_text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "type": "string",
+              "enum": [
+                "bedroom_top_left",
+                "bedroom_top_center",
+                "study_top_right",
+                "kitchen_left_upper",
+                "balcony_left",
+                "bathroom_left_middle_upper",
+                "bathroom_left_middle_lower",
+                "bedroom_bottom_left",
+                "dining_area_top_center",
+                "central_hall_center",
+                "living_room_bottom_center",
+                "balcony_bottom",
+                "home_entry_right"
+              ]
+            }
+          },
+          "required": [
+            "question",
+            "reply_spec",
+            "raw_text",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reply_spec": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "CONTINUE_OR_STOP"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            "raw_text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "enum": [
+                "CONTINUE",
+                "STOP"
+              ]
+            }
+          },
+          "required": [
+            "question",
+            "reply_spec",
+            "raw_text",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reply_spec": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "TARGET_REF"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            "raw_text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "question",
+            "reply_spec",
+            "raw_text",
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "robot_state": {
+      "$ref": "#/$defs/robot_state"
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "robot_state"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "robot_state": {
+      "type": "object",
+      "properties": {
+        "current_location_id": {
+          "type": "string",
+          "enum": [
+            "bedroom_top_left",
+            "bedroom_top_center",
+            "study_top_right",
+            "kitchen_left_upper",
+            "balcony_left",
+            "bathroom_left_middle_upper",
+            "bathroom_left_middle_lower",
+            "bedroom_bottom_left",
+            "dining_area_top_center",
+            "central_hall_center",
+            "living_room_bottom_center",
+            "balcony_bottom",
+            "home_entry_right"
+          ]
+        },
+        "motion_status": {
+          "const": "stopped"
+        }
+      },
+      "required": [
+        "current_location_id",
+        "motion_status"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
